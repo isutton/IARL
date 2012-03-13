@@ -7,6 +7,8 @@
 //
 
 #import "IARLAppDelegate.h"
+#import "IARLRadioTableController.h"
+#import "IARLMapController.h"
 
 @implementation IARLAppDelegate
 
@@ -16,6 +18,22 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+
+    IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] init];
+    UINavigationController *radioNavigationController = [[UINavigationController alloc] initWithRootViewController:radioTableController];
+    
+    IARLMapController *mapController = [[IARLMapController alloc] init];
+    UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapController];
+
+    radioTableController.mapView = mapController.mapView;
+    mapController.mapView.delegate = radioTableController;
+    
+    UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
+    splitViewController.delegate = mapController;
+    splitViewController.viewControllers = [NSArray arrayWithObjects:radioNavigationController, mapNavigationController, nil];
+    
+    self.window.rootViewController = splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
