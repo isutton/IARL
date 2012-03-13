@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		82CD3516150F623900BFE036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3515150F623900BFE036 /* UIKit.framework */; };
+		82CD3518150F623900BFE036 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
+		82CD351A150F623900BFE036 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3519150F623900BFE036 /* CoreGraphics.framework */; };
+		82CD3520150F623900BFE036 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 82CD351E150F623900BFE036 /* InfoPlist.strings */; };
+		82CD3522150F623900BFE036 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD3521150F623900BFE036 /* main.m */; };
+		82CD3526150F623900BFE036 /* IARLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD3525150F623900BFE036 /* IARLAppDelegate.m */; };
+		82CD352E150F623900BFE036 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD352D150F623900BFE036 /* SenTestingKit.framework */; };
+		82CD352F150F623900BFE036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3515150F623900BFE036 /* UIKit.framework */; };
+		82CD3530150F623900BFE036 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
+		82CD3538150F623900BFE036 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 82CD3536150F623900BFE036 /* InfoPlist.strings */; };
+		82CD353B150F623900BFE036 /* IARLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD353A150F623900BFE036 /* IARLTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		82CD3531150F623900BFE036 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 82CD3508150F623900BFE036 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 82CD3510150F623900BFE036;
+			remoteInfo = IARL;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		82CD3511150F623900BFE036 /* IARL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IARL.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82CD3515150F623900BFE036 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		82CD3517150F623900BFE036 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		82CD3519150F623900BFE036 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		82CD351D150F623900BFE036 /* IARL-Info.plist */ = {isa = PBXFileReference; path = "IARL-Info.plist"; sourceTree = "<group>"; };
+		82CD351F150F623900BFE036 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		82CD3521150F623900BFE036 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		82CD3523150F623900BFE036 /* IARL-Prefix.pch */ = {isa = PBXFileReference; path = "IARL-Prefix.pch"; sourceTree = "<group>"; };
+		82CD3524150F623900BFE036 /* IARLAppDelegate.h */ = {isa = PBXFileReference; path = IARLAppDelegate.h; sourceTree = "<group>"; };
+		82CD3525150F623900BFE036 /* IARLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IARLAppDelegate.m; sourceTree = "<group>"; };
+		82CD352C150F623900BFE036 /* IARLTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IARLTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		82CD352D150F623900BFE036 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		82CD3535150F623900BFE036 /* IARLTests-Info.plist */ = {isa = PBXFileReference; path = "IARLTests-Info.plist"; sourceTree = "<group>"; };
+		82CD3537150F623900BFE036 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		82CD3539150F623900BFE036 /* IARLTests.h */ = {isa = PBXFileReference; path = IARLTests.h; sourceTree = "<group>"; };
+		82CD353A150F623900BFE036 /* IARLTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IARLTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		82CD350E150F623900BFE036 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD3516150F623900BFE036 /* UIKit.framework in Frameworks */,
+				82CD3518150F623900BFE036 /* Foundation.framework in Frameworks */,
+				82CD351A150F623900BFE036 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82CD3528150F623900BFE036 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD352E150F623900BFE036 /* SenTestingKit.framework in Frameworks */,
+				82CD352F150F623900BFE036 /* UIKit.framework in Frameworks */,
+				82CD3530150F623900BFE036 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		82CD3506150F623900BFE036 = {
+			isa = PBXGroup;
+			children = (
+				82CD351B150F623900BFE036 /* IARL */,
+				82CD3533150F623900BFE036 /* IARLTests */,
+				82CD3514150F623900BFE036 /* Frameworks */,
+				82CD3512150F623900BFE036 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		82CD3512150F623900BFE036 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82CD3511150F623900BFE036 /* IARL.app */,
+				82CD352C150F623900BFE036 /* IARLTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82CD3514150F623900BFE036 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82CD3515150F623900BFE036 /* UIKit.framework */,
+				82CD3517150F623900BFE036 /* Foundation.framework */,
+				82CD3519150F623900BFE036 /* CoreGraphics.framework */,
+				82CD352D150F623900BFE036 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		82CD351B150F623900BFE036 /* IARL */ = {
+			isa = PBXGroup;
+			children = (
+				82CD3524150F623900BFE036 /* IARLAppDelegate.h */,
+				82CD3525150F623900BFE036 /* IARLAppDelegate.m */,
+				82CD351C150F623900BFE036 /* Supporting Files */,
+			);
+			path = IARL;
+			sourceTree = "<group>";
+		};
+		82CD351C150F623900BFE036 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82CD351D150F623900BFE036 /* IARL-Info.plist */,
+				82CD351E150F623900BFE036 /* InfoPlist.strings */,
+				82CD3521150F623900BFE036 /* main.m */,
+				82CD3523150F623900BFE036 /* IARL-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82CD3533150F623900BFE036 /* IARLTests */ = {
+			isa = PBXGroup;
+			children = (
+				82CD3539150F623900BFE036 /* IARLTests.h */,
+				82CD353A150F623900BFE036 /* IARLTests.m */,
+				82CD3534150F623900BFE036 /* Supporting Files */,
+			);
+			path = IARLTests;
+			sourceTree = "<group>";
+		};
+		82CD3534150F623900BFE036 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82CD3535150F623900BFE036 /* IARLTests-Info.plist */,
+				82CD3536150F623900BFE036 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		82CD3510150F623900BFE036 /* IARL */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82CD353E150F623900BFE036 /* Build configuration list for PBXNativeTarget "IARL" */;
+			buildPhases = (
+				82CD350D150F623900BFE036 /* Sources */,
+				82CD350E150F623900BFE036 /* Frameworks */,
+				82CD350F150F623900BFE036 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IARL;
+			productName = IARL;
+			productReference = 82CD3511150F623900BFE036 /* IARL.app */;
+			productType = "com.apple.product-type.application";
+		};
+		82CD352B150F623900BFE036 /* IARLTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82CD3541150F623900BFE036 /* Build configuration list for PBXNativeTarget "IARLTests" */;
+			buildPhases = (
+				82CD3527150F623900BFE036 /* Sources */,
+				82CD3528150F623900BFE036 /* Frameworks */,
+				82CD3529150F623900BFE036 /* Resources */,
+				82CD352A150F623900BFE036 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				82CD3532150F623900BFE036 /* PBXTargetDependency */,
+			);
+			name = IARLTests;
+			productName = IARLTests;
+			productReference = 82CD352C150F623900BFE036 /* IARLTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		82CD3508150F623900BFE036 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = IARL;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = igorsutton.com;
+			};
+			buildConfigurationList = 82CD350B150F623900BFE036 /* Build configuration list for PBXProject "IARL" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 82CD3506150F623900BFE036;
+			productRefGroup = 82CD3512150F623900BFE036 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				82CD3510150F623900BFE036 /* IARL */,
+				82CD352B150F623900BFE036 /* IARLTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82CD350F150F623900BFE036 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD3520150F623900BFE036 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82CD3529150F623900BFE036 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD3538150F623900BFE036 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		82CD352A150F623900BFE036 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		82CD350D150F623900BFE036 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD3522150F623900BFE036 /* main.m in Sources */,
+				82CD3526150F623900BFE036 /* IARLAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82CD3527150F623900BFE036 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82CD353B150F623900BFE036 /* IARLTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		82CD3532150F623900BFE036 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 82CD3510150F623900BFE036 /* IARL */;
+			targetProxy = 82CD3531150F623900BFE036 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		82CD351E150F623900BFE036 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82CD351F150F623900BFE036 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		82CD3536150F623900BFE036 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				82CD3537150F623900BFE036 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		82CD353C150F623900BFE036 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		82CD353D150F623900BFE036 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		82CD353F150F623900BFE036 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IARL/IARL-Prefix.pch";
+				INFOPLIST_FILE = "IARL/IARL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		82CD3540150F623900BFE036 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IARL/IARL-Prefix.pch";
+				INFOPLIST_FILE = "IARL/IARL-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		82CD3542150F623900BFE036 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IARL.app/IARL";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IARL/IARL-Prefix.pch";
+				INFOPLIST_FILE = "IARLTests/IARLTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		82CD3543150F623900BFE036 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/IARL.app/IARL";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "IARL/IARL-Prefix.pch";
+				INFOPLIST_FILE = "IARLTests/IARLTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		82CD350B150F623900BFE036 /* Build configuration list for PBXProject "IARL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82CD353C150F623900BFE036 /* Debug */,
+				82CD353D150F623900BFE036 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82CD353E150F623900BFE036 /* Build configuration list for PBXNativeTarget "IARL" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82CD353F150F623900BFE036 /* Debug */,
+				82CD3540150F623900BFE036 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		82CD3541150F623900BFE036 /* Build configuration list for PBXNativeTarget "IARLTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82CD3542150F623900BFE036 /* Debug */,
+				82CD3543150F623900BFE036 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 82CD3508150F623900BFE036 /* Project object */;
+}
