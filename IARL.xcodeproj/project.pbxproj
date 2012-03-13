@@ -97,8 +97,6 @@
 		82CD3506150F623900BFE036 = {
 			isa = PBXGroup;
 			children = (
-				82CD354F150F680C00BFE036 /* CoreLocation.framework */,
-				82CD354A150F663F00BFE036 /* MapKit.framework */,
 				82CD351B150F623900BFE036 /* IARL */,
 				82CD3533150F623900BFE036 /* IARLTests */,
 				82CD3514150F623900BFE036 /* Frameworks */,
@@ -118,6 +116,8 @@
 		82CD3514150F623900BFE036 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				82CD354F150F680C00BFE036 /* CoreLocation.framework */,
+				82CD354A150F663F00BFE036 /* MapKit.framework */,
 				82CD3515150F623900BFE036 /* UIKit.framework */,
 				82CD3517150F623900BFE036 /* Foundation.framework */,
 				82CD3519150F623900BFE036 /* CoreGraphics.framework */,
