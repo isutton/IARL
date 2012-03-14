@@ -9,6 +9,7 @@
 #import "IARLAppDelegate.h"
 #import "IARLRadioTableController.h"
 #import "IARLMapController.h"
+#import "IARLDataStore.h"
 
 @implementation IARLAppDelegate
 
@@ -19,8 +20,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-
+    NSString *JSONDataPath = [[NSBundle mainBundle] pathForResource:@"radios" ofType:@"js"];
+    IARLDataStore *dataStore = [[IARLDataStore alloc] initWithContentsOfFile:JSONDataPath];
+    
     IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] init];
+    radioTableController.dataStore = dataStore;
     UINavigationController *radioNavigationController = [[UINavigationController alloc] initWithRootViewController:radioTableController];
     
     IARLMapController *mapController = [[IARLMapController alloc] init];

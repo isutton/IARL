@@ -10,18 +10,22 @@
 
 @implementation IARLRadio
 
-@synthesize ID = _ID;
-@synthesize coordinate = _coordinate;
 @synthesize call = _call;
+@synthesize coordinate = _coordinate;
+@synthesize ID = _ID;
+@synthesize shift = _shift;
+@synthesize tx = _tx;
 
 - (id)initWithDictionary:(NSDictionary *)dict
 {
     if (!(self = [self init]))
         return nil;
 
-    _ID = [[dict objectForKey:@"ID"] copy];
     _call = [[dict objectForKey:@"call"] copy];
     [[dict objectForKey:@"coordinate"] getValue:&_coordinate];
+    _ID = [[dict objectForKey:@"ID"] copy];
+    _shift = [[dict objectForKey:@"shift"] copy];
+    _tx = [[dict objectForKey:@"tx"] copy];
     
     return self;
 }

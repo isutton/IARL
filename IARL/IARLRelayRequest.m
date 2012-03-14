@@ -55,21 +55,15 @@
     NSMutableArray *radios = [NSMutableArray arrayWithCapacity:[receivedData count]];
     for (NSDictionary *radioDict in receivedData) {
 
-        NSScanner *scanner = [[NSScanner alloc] initWithString:[radioDict valueForKeyPath:@"fields.coordinates"]];
-        scanner.scanLocation = 7; // Move to the first digit after "POINT ("
-        
-        float latitude;
-        float longitude;
-        
-        [scanner scanFloat:&latitude];
-        [scanner scanFloat:&longitude];
-
-        CLLocationCoordinate2D location = CLLocationCoordinate2DMake(latitude, longitude);
+        CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[radioDict valueForKeyPath:@"fields.latitude"] floatValue], 
+                                                                     [[radioDict valueForKeyPath:@"fields.longitude"] floatValue]);
         
         IARLRadio *radio = [[IARLRadio alloc] initWithDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                  [radioDict valueForKey:@"pk"], @"ID",
                                                                   [radioDict valueForKeyPath:@"fields.call"], @"call",
                                                                   [NSValue valueWithBytes:&location objCType:@encode(CLLocationCoordinate2D)], @"coordinate",
+                                                                  [radioDict valueForKey:@"pk"], @"ID",
+                                                                  [NSNumber numberWithInt:[[radioDict valueForKeyPath:@"fields.shift"] intValue]], @"shift",
+                                                                  [NSNumber numberWithUnsignedInt:[[radioDict valueForKeyPath:@"fields.tx"] unsignedIntValue]], @"tx",
                                                                   nil]];
         [radios addObject:radio];
     }

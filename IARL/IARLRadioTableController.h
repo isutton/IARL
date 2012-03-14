@@ -9,8 +9,11 @@
 #import <MapKit/MapKit.h>
 #import "IARLRelayRequest.h"
 
+@class IARLDataStore;
+
 @interface IARLRadioTableController : UITableViewController <IARLRelayRequestDelegate,MKMapViewDelegate>
 
+@property (nonatomic, strong) IARLDataStore *dataStore;
 @property (nonatomic, weak) MKMapView *mapView;
 @property (nonatomic, strong) NSArray *radios;
 

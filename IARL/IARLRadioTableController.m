@@ -10,6 +10,7 @@
 #import "IARLRadio.h"
 #import "IARLRelayRequest.h"
 #import "IARLRelayResponse.h"
+#import "IARLDataStore.h"
 
 @interface IARLRadioTableController ()
 
@@ -17,6 +18,7 @@
 
 @implementation IARLRadioTableController
 
+@synthesize dataStore = _dataStore;
 @synthesize mapView = _mapView;
 @synthesize radios = _radios;
 
@@ -25,16 +27,9 @@
 	return YES;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    CLLocationCoordinate2D location = CLLocationCoordinate2DMake(52.4373333333, 4.79166666667);
-    CLLocationCoordinate2D southWestLocation = CLLocationCoordinate2DMake(51.745472353475, 8.0930582682325);
-    CLLocationCoordinate2D northEastLocation = CLLocationCoordinate2DMake(53.118499326185, 1.4902750651075);
-    NSSet *bands = [NSSet setWithObject:@"2m"];
-    
-    IARLRelayRequest *request = [[IARLRelayRequest alloc] initWithLocation:location northEastLocation:northEastLocation southWestLocation:southWestLocation bands:bands];
-    request.delegate = self;
-    [request start];
+    _mapView.showsUserLocation = YES;
 }
 
 #pragma mark - Table view data source
@@ -50,45 +45,40 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", radio.call];
+    cell.textLabel.text = radio.call;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"tx: %@, shift: %@", radio.tx, radio.shift];
     
     return cell;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
-    
-    MKCoordinateRegion region;
-    region.center = radio.coordinate;
-    region.span.latitudeDelta = 1;
-    region.span.longitudeDelta = 1;
-    [self.mapView setRegion:[self.mapView regionThatFits:region] animated:YES];
-    [self.mapView selectAnnotation:radio animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    MKCoordinateRegion region = mapView.region;
-    MKCoordinateSpan span = region.span;
+    MKCoordinateSpan span = mapView.region.span;
     
-    CLLocationCoordinate2D location = region.center;
-    CLLocationCoordinate2D southWestLocation = CLLocationCoordinate2DMake(location.latitude - span.latitudeDelta, location.longitude - span.longitudeDelta);
-    CLLocationCoordinate2D northEastLocation = CLLocationCoordinate2DMake(location.latitude + span.latitudeDelta, location.longitude + span.longitudeDelta);
-    NSSet *bands = [NSSet setWithObject:@"2m"];
-    
-    IARLRelayRequest *request = [[IARLRelayRequest alloc] initWithLocation:location northEastLocation:northEastLocation southWestLocation:southWestLocation bands:bands];
-    request.delegate = self;
-    [request start];
+    if (span.latitudeDelta < 0.5 || span.longitudeDelta < 0.5) {
+        MKCoordinateRegion region = mapView.region;
+        region.span = MKCoordinateSpanMake(0.5, 0.5);
+        region.center = mapView.centerCoordinate;
+        [mapView setRegion:region animated:YES];
+    }
 
+    NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[_dataStore radiosInRegion:mapView.region]];
+    NSMutableSet *annotationsInMap = [NSMutableSet setWithArray:mapView.annotations];
+    [radiosInRegion minusSet:annotationsInMap];
+    [mapView addAnnotations:[radiosInRegion allObjects]];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.5, 0.5);
+    MKCoordinateRegion region = MKCoordinateRegionMake(userLocation.coordinate, span);
+    mapView.region = region;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -102,22 +92,6 @@
     }
     
     return annotationView;
-}
-
-#pragma mark - IARLRelayRequestDelegate
-
-- (void)relayRequest:(IARLRelayRequest *)request didReceiveResponse:(IARLRelayResponse *)response
-{
-    [self.mapView removeAnnotations:self.radios];
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"ID" ascending:YES];
-    self.radios = [response.radios sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    [self.mapView addAnnotations:self.radios];
-    [self.tableView reloadData];
-}
-
-- (void)relayRequest:(IARLRelayRequest *)request didFailWithError:(NSError *)error
-{
-
 }
 
 @end

@@ -14,6 +14,8 @@
 @property (nonatomic, readonly) NSString *ID;
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) NSString *call;
+@property (nonatomic, readonly) NSNumber *tx;
+@property (nonatomic, readonly) NSNumber *shift;
 
 - (id)initWithDictionary:(NSDictionary *)dict;
 
