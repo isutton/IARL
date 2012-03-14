@@ -11,32 +11,27 @@
 @implementation IARLRadio
 
 @synthesize ID = _ID;
-@synthesize location = _location;
+@synthesize coordinate = _coordinate;
 @synthesize call = _call;
 
-- (id)initWithID:(NSString *)ID location:(CLLocationCoordinate2D)location call:(NSString *)call
+- (id)initWithDictionary:(NSDictionary *)dict
 {
-    if (!(self = [super init]))
+    if (!(self = [self init]))
         return nil;
 
-    _ID = ID;
-    _location = location;
-    _call = call;
+    _ID = [[dict objectForKey:@"ID"] copy];
+    _call = [[dict objectForKey:@"call"] copy];
+    [[dict objectForKey:@"coordinate"] getValue:&_coordinate];
     
     return self;
 }
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<IARLRadio ID:%@, Call: %@, Longitude:%f, Latitude:%f>", self.ID, self.location.longitude, self.location.latitude];
+    return [NSString stringWithFormat:@"<IARLRadio ID:%@, Call: %@, Longitude:%f, Latitude:%f>", self.ID, self.coordinate.longitude, self.coordinate.latitude];
 }
 
 #pragma mark - MKAnnotation
-
-- (CLLocationCoordinate2D)coordinate
-{
-    return self.location;
-}
 
 - (NSString *)title
 {

@@ -12,9 +12,9 @@
 @interface IARLRadio : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) NSString *ID;
-@property (nonatomic, readonly) CLLocationCoordinate2D location;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly) NSString *call;
 
-- (id)initWithID:(NSString *)ID location:(CLLocationCoordinate2D)location call:(NSString *)call;
+- (id)initWithDictionary:(NSDictionary *)dict;
 
 @end

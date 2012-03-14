@@ -64,11 +64,13 @@
         [scanner scanFloat:&latitude];
         [scanner scanFloat:&longitude];
 
-        NSString *ID = [radioDict valueForKey:@"pk"];
-        NSString *call = [radioDict valueForKeyPath:@"fields.call"];
-        
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake(latitude, longitude);
-        IARLRadio *radio = [[IARLRadio alloc] initWithID:ID location:location call:call];
+        
+        IARLRadio *radio = [[IARLRadio alloc] initWithDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                  [radioDict valueForKey:@"pk"], @"ID",
+                                                                  [radioDict valueForKeyPath:@"fields.call"], @"call",
+                                                                  [NSValue valueWithBytes:&location objCType:@encode(CLLocationCoordinate2D)], @"coordinate",
+                                                                  nil]];
         [radios addObject:radio];
     }
     
