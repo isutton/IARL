@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class IARLBandFilterViewController;
+@class IARLDeviceFilterViewController;
 
 @interface IARLFiltersViewController : UIViewController 
 {
     @private
     __strong UISegmentedControl *_filterTypesControl;
     __strong IARLBandFilterViewController *_bandFilterViewController;
+    __strong IARLDeviceFilterViewController *_deviceFilterViewController;
     NSInteger _visibleFilterTypeIndex;
     
 }

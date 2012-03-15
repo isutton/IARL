@@ -8,6 +8,7 @@
 
 #import "IARLFiltersViewController.h"
 #import "IARLBandFilterViewController.h"
+#import "IARLDeviceFilterViewController.h"
 
 @interface IARLFiltersViewController ()
 
@@ -21,6 +22,7 @@
         return nil;
     
     _bandFilterViewController = [[IARLBandFilterViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    _deviceFilterViewController = [[IARLDeviceFilterViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     return self;
 }
@@ -28,16 +30,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
-    [_filterTypesControl setEnabled:YES forSegmentAtIndex:0];
+    [_filterTypesControl setEnabled:YES forSegmentAtIndex:_visibleFilterTypeIndex];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // TODO: Store this in NSUserDefaults.
-    _visibleFilterTypeIndex = 0;
-
+    _visibleFilterTypeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"IARLVisibleFilterTypeIndex"];
+    
     _filterTypesControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Bands", @"Devices", nil]];
     _filterTypesControl.segmentedControlStyle = UISegmentedControlStyleBar;
     _filterTypesControl.frame = CGRectInset(self.navigationController.navigationBar.bounds, 7.0, 7.0);
@@ -74,11 +75,14 @@
 
 - (void)displayViewAtIndex:(NSInteger)idx
 {
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:idx] forKey:@"IARLVisibleFilterTypeIndex"];
+
     switch (idx) {
         case 0:
             self.view = _bandFilterViewController.view;
             break;
-            
+        case 1:
+            self.view = _deviceFilterViewController.view;
         default:
             break;
     }

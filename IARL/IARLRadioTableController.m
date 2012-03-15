@@ -165,7 +165,7 @@
 {
     if (_filtersPopoverController)
         return;
-
+    
     IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] init];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
