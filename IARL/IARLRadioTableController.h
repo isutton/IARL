@@ -13,6 +13,8 @@
 
 @property (nonatomic, weak) id<UITableViewDelegate> delegate;
 @property (nonatomic, weak) id<UITableViewDataSource> dataSource;
+@property (nonatomic, weak) id<UISearchBarDelegate> searchBarDelegate;
+@property (nonatomic, strong) UISearchBar *searchBar;
 
 - (void)reloadData;
 

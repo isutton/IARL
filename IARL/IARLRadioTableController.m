@@ -18,8 +18,7 @@
 
 @implementation IARLRadioTableController
 
-@dynamic delegate;
-@dynamic dataSource;
+@synthesize searchBar = _searchBar;
 
 - (void)setDelegate:(id<UITableViewDelegate>)delegate
 {
@@ -36,6 +35,21 @@
     self.tableView.dataSource = dataSource;
 }
 
+- (id<UITableViewDataSource>)dataSource
+{
+    return self.tableView.dataSource;
+}
+
+- (void)setSearchBarDelegate:(id<UISearchBarDelegate>)searchBarDelegate
+{
+    _searchBar.delegate = searchBarDelegate;
+}
+
+- (id<UISearchBarDelegate>)searchBarDelegate
+{
+    return _searchBar.delegate;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
@@ -49,6 +63,9 @@
 - (void)viewDidLoad
 {
     self.navigationItem.title = @"Radios in Map";
+    _searchBar = [[UISearchBar alloc] init];
+    self.tableView.tableHeaderView = _searchBar;
+    [_searchBar sizeToFit];
 }
 
 - (void)reloadData
