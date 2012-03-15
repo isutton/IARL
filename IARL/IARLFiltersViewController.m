@@ -25,9 +25,14 @@
 {
     [super viewDidLoad];
     
-    _bands = [[NSArray alloc] initWithObjects:@"2m", @"1m", nil];
+    UISegmentedControl *sc = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Bands", @"Devices", nil]];
+    sc.segmentedControlStyle = UISegmentedControlStyleBar;
+    sc.frame = CGRectInset(self.navigationController.navigationBar.bounds, 7.0, 7.0);
+    self.navigationItem.titleView = sc;
+    [sc addTarget:self action:@selector(filterTypeChanged:) forControlEvents:UIControlEventValueChanged];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonItemStyleDone target:self action:@selector(doneButtonTapped:)];
+    
+    _bands = [[NSArray alloc] initWithObjects:@"2m", @"1m", nil];
 }
 
 - (void)viewDidUnload
@@ -38,6 +43,11 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(320.0, 300.0);
 }
 
 #pragma mark - Table view data source
@@ -106,10 +116,16 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma mark - API
+
 - (IBAction)doneButtonTapped:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (IBAction)filterTypeChanged:(id)sender
+{
+    
+}
 
 @end

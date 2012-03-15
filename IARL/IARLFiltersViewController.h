@@ -13,5 +13,6 @@
 @property (nonatomic, strong) NSArray *bands;
 
 - (IBAction)doneButtonTapped:(id)sender;
+- (IBAction)filterTypeChanged:(id)sender;
 
 @end
