@@ -9,7 +9,10 @@
 #import <MapKit/MapKit.h>
 #import "IARLDataStore.h"
 
-@interface IARLRadioTableController : UITableViewController <MKMapViewDelegate,IARLDataStoreDelegate>
+@interface IARLRadioTableController : UITableViewController <UIPopoverControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
+{
+    __strong UIPopoverController *_filtersPopoverController;
+}
 
 @property (nonatomic, strong) IARLDataStore *dataStore;
 @property (nonatomic, weak) MKMapView *mapView;

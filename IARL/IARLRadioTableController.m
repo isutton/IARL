@@ -140,6 +140,15 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    if (popoverController == _filtersPopoverController) {
+        _filtersPopoverController = nil;
+    }
+}
+
 #pragma mark - API
 
 - (void)annotationDisclosureButtonTapped:(id)sender
@@ -154,8 +163,14 @@
 
 - (IBAction)filtersButtonTapped:(id)sender
 {
+    if (_filtersPopoverController)
+        return;
+
     IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController pushViewController:vc animated:YES];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
+    _filtersPopoverController.delegate = self;
+    [_filtersPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 @end
