@@ -27,13 +27,21 @@
 	return YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
 - (void)viewDidLoad
 {
     _mapView.showsUserLocation = YES;
     _mapView.centerCoordinate = _mapView.userLocation.coordinate;
     
     self.navigationItem.title = @"Radios in Map";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)];
+    self.toolbarItems = [NSArray arrayWithObjects:
+                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL],
+                         [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)], 
+                         nil];
 }
 
 #pragma mark - Table view data source
