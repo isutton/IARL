@@ -21,8 +21,10 @@
     if (!(self = [super init]))
         return nil;
     
-    _bandFilterViewController = [[IARLBandFilterViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    _deviceFilterViewController = [[IARLDeviceFilterViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    _filters = [NSArray arrayWithObjects:
+                [[IARLBandFilterViewController alloc] initWithStyle:UITableViewStyleGrouped],
+                [[IARLDeviceFilterViewController alloc] initWithStyle:UITableViewStyleGrouped],
+                nil];
     
     return self;
 }
@@ -39,7 +41,13 @@
     
     _visibleFilterTypeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"IARLVisibleFilterTypeIndex"];
     
-    _filterTypesControl = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"Bands", @"Devices", nil]];
+    NSMutableArray *filterNames = [NSMutableArray arrayWithCapacity:[_filters count]];
+    
+    for (id<IARLFilterConfigurable> filter in _filters) {
+        [filterNames addObject:[filter name]];
+    }
+    
+    _filterTypesControl = [[UISegmentedControl alloc] initWithItems:filterNames];
     _filterTypesControl.segmentedControlStyle = UISegmentedControlStyleBar;
     _filterTypesControl.frame = CGRectInset(self.navigationController.navigationBar.bounds, 7.0, 7.0);
     _filterTypesControl.selectedSegmentIndex = _visibleFilterTypeIndex;
@@ -47,7 +55,7 @@
     [_filterTypesControl addTarget:self action:@selector(filterTypeChanged:) forControlEvents:UIControlEventValueChanged];
 
     
-    [self displayViewAtIndex:_visibleFilterTypeIndex];
+    [self displayViewControllerAtIndex:_visibleFilterTypeIndex];
 }
 
 - (void)viewDidUnload
@@ -69,23 +77,14 @@
 
 - (IBAction)filterTypeChanged:(id)sender
 {
-    [self displayViewAtIndex:_filterTypesControl.selectedSegmentIndex];
-    
+    [self displayViewControllerAtIndex:_filterTypesControl.selectedSegmentIndex];
 }
 
-- (void)displayViewAtIndex:(NSInteger)idx
+- (void)displayViewControllerAtIndex:(NSInteger)idx
 {
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:idx] forKey:@"IARLVisibleFilterTypeIndex"];
+    self.view = [[_filters objectAtIndex:idx] view];    
 
-    switch (idx) {
-        case 0:
-            self.view = _bandFilterViewController.view;
-            break;
-        case 1:
-            self.view = _deviceFilterViewController.view;
-        default:
-            break;
-    }
 }
 
 @end

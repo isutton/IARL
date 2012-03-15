@@ -6,7 +6,9 @@
 //  Copyright (c) 2012 igorsutton.com. All rights reserved.
 //
 
-@interface IARLBandFilterViewController : UITableViewController
+#import "IARLFiltersViewController.h"
+
+@interface IARLBandFilterViewController : UITableViewController <IARLFilterConfigurable>
 
 @property (nonatomic, strong) NSArray *bands;
 

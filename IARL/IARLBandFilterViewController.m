@@ -16,6 +16,11 @@
 
 @synthesize bands = _bands;
 
+- (NSString *)name
+{
+    return @"Bands";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

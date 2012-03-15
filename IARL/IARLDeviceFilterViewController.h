@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 igorsutton.com. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "IARLFiltersViewController.h"
 
-@interface IARLDeviceFilterViewController : UITableViewController
+@interface IARLDeviceFilterViewController : UITableViewController <IARLFilterConfigurable>
 
 @end

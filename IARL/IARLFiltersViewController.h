@@ -11,17 +11,23 @@
 @class IARLBandFilterViewController;
 @class IARLDeviceFilterViewController;
 
+@protocol IARLFilterConfigurable <NSObject>
+
+- (NSString *)name;
+- (UIView *)view;
+
+@end
+
 @interface IARLFiltersViewController : UIViewController 
 {
     @private
     __strong UISegmentedControl *_filterTypesControl;
-    __strong IARLBandFilterViewController *_bandFilterViewController;
-    __strong IARLDeviceFilterViewController *_deviceFilterViewController;
+    __strong NSArray *_filters;
     NSInteger _visibleFilterTypeIndex;
     
 }
 
 - (IBAction)filterTypeChanged:(id)sender;
-- (void)displayViewAtIndex:(NSInteger)idx;
+- (void)displayViewControllerAtIndex:(NSInteger)idx;
 
 @end

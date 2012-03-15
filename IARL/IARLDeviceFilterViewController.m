@@ -14,6 +14,11 @@
 
 @implementation IARLDeviceFilterViewController
 
+- (NSString *)name
+{
+    return @"Devices";
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
