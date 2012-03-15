@@ -109,14 +109,13 @@
     }
 
     annotationView.annotation = annotation;
-    
+    annotationView.animatesDrop = NO;
+
     if (annotation == mapView.userLocation) {
         annotationView.pinColor = MKPinAnnotationColorPurple;
-        annotationView.animatesDrop = NO;
         annotationView.canShowCallout = NO;
     }
     else {
-        annotationView.animatesDrop = YES;
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [callOutButton addTarget:self action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
