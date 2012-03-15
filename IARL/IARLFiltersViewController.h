@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IARLFiltersViewController : UITableViewController
+@class IARLBandFilterViewController;
 
-@property (nonatomic, strong) NSArray *bands;
+@interface IARLFiltersViewController : UIViewController 
+{
+    @private
+    __strong UISegmentedControl *_filterTypesControl;
+    __strong IARLBandFilterViewController *_bandFilterViewController;
+    NSInteger _visibleFilterTypeIndex;
+    
+}
 
-- (IBAction)doneButtonTapped:(id)sender;
 - (IBAction)filterTypeChanged:(id)sender;
+- (void)displayViewAtIndex:(NSInteger)idx;
 
 @end
