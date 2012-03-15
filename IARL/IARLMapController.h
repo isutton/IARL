@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface IARLMapController : UIViewController <UISplitViewControllerDelegate,MKMapViewDelegate>
+@interface IARLMapController : UIViewController <UISplitViewControllerDelegate,UISearchBarDelegate,MKMapViewDelegate>
 
 @property (nonatomic, strong) MKMapView *mapView;
 

@@ -7,6 +7,7 @@
 //
 
 #import "IARLMapController.h"
+#import "NSString+IARL.h"
 
 @interface IARLMapController ()
 
@@ -35,6 +36,7 @@
     [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 22.0)];
+    searchBar.delegate = self;
     searchBar.placeholder = @"Go to Grid Square Locator";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     
@@ -62,6 +64,15 @@
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    CLLocationCoordinate2D coordinate = [searchBar.text coordinateFromGridSquareLocator];
+    [_mapView setCenterCoordinate:coordinate animated:YES];
+    [searchBar resignFirstResponder];
 }
 
 @end
