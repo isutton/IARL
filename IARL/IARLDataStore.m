@@ -12,6 +12,7 @@
 
 @implementation IARLDataStore
 
+@synthesize delegate = _delegate;
 @synthesize radios = _radios;
 
 - (id)initWithContentsOfFile:(NSString *)filePath
@@ -19,8 +20,15 @@
     if (!(self = [self init]))
         return nil;
     
-    NSData *JSONData = [NSData dataWithContentsOfFile:filePath];
+    [self performSelectorInBackground:@selector(loadContentsOfFile:) withObject:filePath];
+    
+    return self;
+}
 
+- (void)loadContentsOfFile:(NSString *)filePath
+{
+    NSData *JSONData = [NSData dataWithContentsOfFile:filePath];
+    
     NSError *error;
     NSArray *JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:&error];
     
@@ -41,9 +49,10 @@
                                                                   nil]];
         [radios addObject:radio];
     }
+    
     self.radios = radios;
     
-    return self;
+    [_delegate dataStoreDidFinishLoading:self];
 }
 
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region

@@ -8,9 +8,9 @@
 
 #import "IARLRadioTableController.h"
 #import "IARLRadio.h"
-#import "IARLRelayRequest.h"
-#import "IARLRelayResponse.h"
 #import "IARLDataStore.h"
+#import "IARLRadioDetailViewController.h"
+#import "IARLFiltersViewController.h"
 
 @interface IARLRadioTableController ()
 
@@ -30,6 +30,10 @@
 - (void)viewDidLoad
 {
     _mapView.showsUserLocation = YES;
+    _mapView.centerCoordinate = _mapView.userLocation.coordinate;
+    
+    self.navigationItem.title = @"Radios in Map";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)];
 }
 
 #pragma mark - Table view data source
@@ -49,10 +53,17 @@
     }
     
     IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = radio.call;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"tx: %@, shift: %@", radio.tx, radio.shift];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
+    [_mapView selectAnnotation:radio animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -69,9 +80,13 @@
     }
 
     NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[_dataStore radiosInRegion:mapView.region]];
+    self.radios = [radiosInRegion allObjects];
+    [self.tableView reloadData];
+
     NSMutableSet *annotationsInMap = [NSMutableSet setWithArray:mapView.annotations];
     [radiosInRegion minusSet:annotationsInMap];
     [mapView addAnnotations:[radiosInRegion allObjects]];
+    
 }
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -83,15 +98,56 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"Foo"];
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Foo"];
     
     if (!annotationView) {
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Foo"];
-        annotationView.canShowCallout = YES;
-        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     }
+
+    annotationView.annotation = annotation;
     
+    if (annotation == mapView.userLocation) {
+        annotationView.pinColor = MKPinAnnotationColorPurple;
+        annotationView.animatesDrop = NO;
+        annotationView.canShowCallout = NO;
+    }
+    else {
+        annotationView.animatesDrop = YES;
+        annotationView.canShowCallout = YES;
+        UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [callOutButton addTarget:self action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
+        annotationView.rightCalloutAccessoryView = callOutButton;
+    }
+
     return annotationView;
+}
+
+#pragma mark - IARLDataStoreDelegate
+
+- (void)dataStoreDidFinishLoading:(IARLDataStore *)dataStore
+{
+    NSArray *radiosInRegion = [dataStore radiosInRegion:_mapView.region];
+    [_mapView performSelectorOnMainThread:@selector(addAnnotations:) withObject:radiosInRegion waitUntilDone:NO];
+    self.radios = radiosInRegion;
+    [self.tableView reloadData];
+}
+
+#pragma mark - API
+
+- (void)annotationDisclosureButtonTapped:(id)sender
+{
+    IARLRadio *radio = [_mapView.selectedAnnotations lastObject];
+    IARLRadioDetailViewController *vc = [[IARLRadioDetailViewController alloc] initWithNibName:@"IARLRadioDetailViewController" bundle:nil];
+    vc.radio = radio;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentModalViewController:navigationController animated:YES];
+}
+
+- (IBAction)filtersButtonTapped:(id)sender
+{
+    IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

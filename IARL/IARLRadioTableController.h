@@ -7,14 +7,15 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "IARLRelayRequest.h"
+#import "IARLDataStore.h"
 
-@class IARLDataStore;
-
-@interface IARLRadioTableController : UITableViewController <IARLRelayRequestDelegate,MKMapViewDelegate>
+@interface IARLRadioTableController : UITableViewController <MKMapViewDelegate,IARLDataStoreDelegate>
 
 @property (nonatomic, strong) IARLDataStore *dataStore;
 @property (nonatomic, weak) MKMapView *mapView;
 @property (nonatomic, strong) NSArray *radios;
+
+- (void)annotationDisclosureButtonTapped:(id)sender;
+- (IBAction)filtersButtonTapped:(id)sender;
 
 @end

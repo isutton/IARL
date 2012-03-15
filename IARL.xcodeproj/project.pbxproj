@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		82072787150F802F0001388B /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
-		82323FE515109C0B0049A90C /* radios.js in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
 		82323FE715109DA50049A90C /* radios.js in Resources */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
 		82323FEA15109F410049A90C /* IARLDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE915109F410049A90C /* IARLDataStore.m */; };
+		82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */; };
+		82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */; };
+		82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */; };
 		82CD3516150F623900BFE036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3515150F623900BFE036 /* UIKit.framework */; };
 		82CD3518150F623900BFE036 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
 		82CD351A150F623900BFE036 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3519150F623900BFE036 /* CoreGraphics.framework */; };
@@ -25,9 +27,7 @@
 		82CD3546150F637E00BFE036 /* IARLRadioTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD3545150F637E00BFE036 /* IARLRadioTableController.m */; };
 		82CD3549150F642B00BFE036 /* IARLMapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD3548150F642B00BFE036 /* IARLMapController.m */; };
 		82CD354B150F663F00BFE036 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD354A150F663F00BFE036 /* MapKit.framework */; };
-		82CD354E150F676200BFE036 /* IARLRelayRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD354D150F676200BFE036 /* IARLRelayRequest.m */; };
 		82CD3550150F680C00BFE036 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD354F150F680C00BFE036 /* CoreLocation.framework */; };
-		82CD3553150F771D00BFE036 /* IARLRelayResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 82CD3552150F771D00BFE036 /* IARLRelayResponse.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +46,11 @@
 		82323FE415109C0B0049A90C /* radios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = radios.js; sourceTree = "<group>"; };
 		82323FE815109F410049A90C /* IARLDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataStore.h; sourceTree = "<group>"; };
 		82323FE915109F410049A90C /* IARLDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataStore.m; sourceTree = "<group>"; };
+		82A01A681510DA6100637827 /* IARLRadioDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRadioDetailViewController.h; sourceTree = "<group>"; };
+		82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLRadioDetailViewController.m; sourceTree = "<group>"; };
+		82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IARLRadioDetailViewController.xib; sourceTree = "<group>"; };
+		82A01A6D1510EEF200637827 /* IARLFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLFiltersViewController.h; sourceTree = "<group>"; };
+		82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLFiltersViewController.m; sourceTree = "<group>"; };
 		82CD3511150F623900BFE036 /* IARL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IARL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CD3515150F623900BFE036 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82CD3517150F623900BFE036 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,11 +72,7 @@
 		82CD3547150F642B00BFE036 /* IARLMapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLMapController.h; sourceTree = "<group>"; };
 		82CD3548150F642B00BFE036 /* IARLMapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLMapController.m; sourceTree = "<group>"; };
 		82CD354A150F663F00BFE036 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		82CD354C150F676200BFE036 /* IARLRelayRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRelayRequest.h; sourceTree = "<group>"; };
-		82CD354D150F676200BFE036 /* IARLRelayRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLRelayRequest.m; sourceTree = "<group>"; };
 		82CD354F150F680C00BFE036 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		82CD3551150F771D00BFE036 /* IARLRelayResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRelayResponse.h; sourceTree = "<group>"; };
-		82CD3552150F771D00BFE036 /* IARLRelayResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLRelayResponse.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,14 +143,15 @@
 				82CD3545150F637E00BFE036 /* IARLRadioTableController.m */,
 				82CD3547150F642B00BFE036 /* IARLMapController.h */,
 				82CD3548150F642B00BFE036 /* IARLMapController.m */,
-				82CD354C150F676200BFE036 /* IARLRelayRequest.h */,
-				82CD354D150F676200BFE036 /* IARLRelayRequest.m */,
-				82CD3551150F771D00BFE036 /* IARLRelayResponse.h */,
-				82CD3552150F771D00BFE036 /* IARLRelayResponse.m */,
 				82072785150F802F0001388B /* IARLRadio.h */,
 				82072786150F802F0001388B /* IARLRadio.m */,
 				82323FE815109F410049A90C /* IARLDataStore.h */,
 				82323FE915109F410049A90C /* IARLDataStore.m */,
+				82A01A681510DA6100637827 /* IARLRadioDetailViewController.h */,
+				82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */,
+				82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */,
+				82A01A6D1510EEF200637827 /* IARLFiltersViewController.h */,
+				82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */,
 			);
 			path = IARL;
 			sourceTree = "<group>";
@@ -259,6 +261,7 @@
 			files = (
 				82323FE715109DA50049A90C /* radios.js in Resources */,
 				82CD3520150F623900BFE036 /* InfoPlist.strings in Resources */,
+				82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,11 +300,10 @@
 				82CD3526150F623900BFE036 /* IARLAppDelegate.m in Sources */,
 				82CD3546150F637E00BFE036 /* IARLRadioTableController.m in Sources */,
 				82CD3549150F642B00BFE036 /* IARLMapController.m in Sources */,
-				82CD354E150F676200BFE036 /* IARLRelayRequest.m in Sources */,
-				82CD3553150F771D00BFE036 /* IARLRelayResponse.m in Sources */,
 				82072787150F802F0001388B /* IARLRadio.m in Sources */,
-				82323FE515109C0B0049A90C /* radios.js in Sources */,
 				82323FEA15109F410049A90C /* IARLDataStore.m in Sources */,
+				82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */,
+				82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

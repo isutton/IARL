@@ -25,6 +25,7 @@
     
     IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] init];
     radioTableController.dataStore = dataStore;
+    dataStore.delegate = radioTableController;
     UINavigationController *radioNavigationController = [[UINavigationController alloc] initWithRootViewController:radioTableController];
     
     IARLMapController *mapController = [[IARLMapController alloc] init];

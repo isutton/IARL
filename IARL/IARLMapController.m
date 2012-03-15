@@ -29,10 +29,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Configure our map view.
+
     _mapView.frame = self.view.bounds;
+    _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
+
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 22.0)];
+    searchBar.placeholder = @"Go to Grid Square Locator";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
+    
+    self.view.autoresizesSubviews = YES;
     [self.view addSubview:_mapView];
 }
 

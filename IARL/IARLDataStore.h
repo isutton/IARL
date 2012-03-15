@@ -8,11 +8,21 @@
 
 #import <MapKit/MapKit.h>
 
+@class IARLDataStore;
+
+@protocol IARLDataStoreDelegate <NSObject>
+
+- (void)dataStoreDidFinishLoading:(IARLDataStore *)dataStore;
+
+@end
+
 @interface IARLDataStore : NSObject
 
+@property (nonatomic, assign) id<IARLDataStoreDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *radios;
 
 - (id)initWithContentsOfFile:(NSString *)filePath;
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region;
+- (void)loadContentsOfFile:(NSString *)filePath;
 
 @end
