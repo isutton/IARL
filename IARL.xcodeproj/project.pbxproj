@@ -30,6 +30,7 @@
 		82CD3550150F680C00BFE036 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD354F150F680C00BFE036 /* CoreLocation.framework */; };
 		82E0E3F11511D8FB0095425C /* NSString+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F01511D8FB0095425C /* NSString+IARL.m */; };
 		82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */; };
+		82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		82E0E3F01511D8FB0095425C /* NSString+IARL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IARL.m"; sourceTree = "<group>"; };
 		82E0E3F31511F5440095425C /* IARLBandFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLBandFilterViewController.h; sourceTree = "<group>"; };
 		82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLBandFilterViewController.m; sourceTree = "<group>"; };
+		82E0E3F61511FE040095425C /* IARLDeviceFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDeviceFilterViewController.h; sourceTree = "<group>"; };
+		82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDeviceFilterViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */,
 				82E0E3F31511F5440095425C /* IARLBandFilterViewController.h */,
 				82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */,
+				82E0E3F61511FE040095425C /* IARLDeviceFilterViewController.h */,
+				82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */,
 			);
 			path = IARL;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */,
 				82E0E3F11511D8FB0095425C /* NSString+IARL.m in Sources */,
 				82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */,
+				82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
