@@ -12,7 +12,7 @@
 @class IARLRadioTableController;
 @class IARLMapController;
 
-@interface IARLDataController : NSObject <UITableViewDelegate,UITableViewDataSource,UISplitViewControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
+@interface IARLDataController : NSObject <UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UISplitViewControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
 
 @property (nonatomic, strong) IARLMapController *mapController;
 @property (nonatomic, strong) IARLRadioTableController *radioTableController;

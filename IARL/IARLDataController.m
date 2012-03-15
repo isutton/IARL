@@ -22,8 +22,9 @@
 - (void)setRadioTableController:(IARLRadioTableController *)radioTableController
 {
     _radioTableController = radioTableController;
-    _radioTableController.tableView.delegate = self;
-    _radioTableController.tableView.dataSource = self;
+    _radioTableController.delegate = self;
+    _radioTableController.dataSource = self;
+    _radioTableController.searchBarDelegate = self;    
 }
 
 - (void)setMapController:(IARLMapController *)mapController
