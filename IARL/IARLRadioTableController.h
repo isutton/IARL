@@ -9,14 +9,11 @@
 #import <MapKit/MapKit.h>
 #import "IARLDataStore.h"
 
-@interface IARLRadioTableController : UITableViewController <MKMapViewDelegate,IARLDataStoreDelegate>
-{
-}
+@interface IARLRadioTableController : UITableViewController
 
-@property (nonatomic, strong) IARLDataStore *dataStore;
-@property (nonatomic, weak) MKMapView *mapView;
-@property (nonatomic, strong) NSArray *radios;
+@property (nonatomic, weak) id<UITableViewDelegate> delegate;
+@property (nonatomic, weak) id<UITableViewDataSource> dataSource;
 
-- (void)annotationDisclosureButtonTapped:(id)sender;
+- (void)reloadData;
 
 @end

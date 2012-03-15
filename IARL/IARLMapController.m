@@ -16,11 +16,12 @@
 
 @implementation IARLMapController
 
+@dynamic delegate;
 @synthesize mapView = _mapView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    if (!(self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]))
+    if (!(self = [super init]))
         return nil;
 
     _mapView = [[MKMapView alloc] initWithFrame:CGRectZero];
@@ -34,38 +35,29 @@
 
     _mapView.frame = self.view.bounds;
     _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    [_mapView setCenterCoordinate:_mapView.userLocation.location.coordinate animated:YES];
+    _mapView.showsUserLocation = YES;
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 22.0)];
     searchBar.delegate = self;
     searchBar.placeholder = @"Go to Grid Square Locator";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)];
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)]];
 
     self.view.autoresizesSubviews = YES;
     [self.view addSubview:_mapView];
 }
 
-- (void)viewDidUnload
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidUnload];
+    MKCoordinateRegion region;
+    region.center = _mapView.userLocation.coordinate;
+    region.span = MKCoordinateSpanMake(0.5, 0.5);
+    [_mapView setRegion:region animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
-}
-
-#pragma mark - UISplitViewControllerDelegate
-
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
-{
-    self.navigationItem.leftBarButtonItem = barButtonItem;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    
 }
 
 #pragma mark - UISearchBarDelegate
@@ -87,6 +79,36 @@
 }
 
 #pragma mark - API
+
+- (void)setDelegate:(id<MKMapViewDelegate>)delegate
+{
+    self.mapView.delegate = delegate;
+}
+
+- (id<MKMapViewDelegate>)delegate
+{
+    return self.mapView.delegate;
+}
+
+- (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated
+{
+    [self.mapView selectAnnotation:annotation animated:animated];
+}
+
+- (MKCoordinateRegion)region
+{
+    return [self.mapView region];
+}
+
+- (NSArray *)selectedAnnotations
+{
+    return self.mapView.selectedAnnotations;
+}
+
+- (void)addAnnotations:(NSArray *)annotations
+{
+    [self.mapView addAnnotations:annotations];
+}
 
 - (IBAction)filtersButtonTapped:(id)sender
 {

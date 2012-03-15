@@ -10,10 +10,12 @@
 #import "IARLRadioTableController.h"
 #import "IARLMapController.h"
 #import "IARLDataStore.h"
+#import "IARLDataController.h"
 
 @implementation IARLAppDelegate
 
 @synthesize window = _window;
+@synthesize dataController = _dataController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -21,22 +23,24 @@
     // Override point for customization after application launch.
     
     NSString *JSONDataPath = [[NSBundle mainBundle] pathForResource:@"radios" ofType:@"js"];
-    IARLDataStore *dataStore = [[IARLDataStore alloc] initWithContentsOfFile:JSONDataPath];
+
+    self.dataController = [[IARLDataController alloc] init];
+    self.dataController.dataStore = [[IARLDataStore alloc] initWithContentsOfFile:JSONDataPath];
     
     IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] init];
-    radioTableController.dataStore = dataStore;
-    dataStore.delegate = radioTableController;
     UINavigationController *radioNavigationController = [[UINavigationController alloc] initWithRootViewController:radioTableController];
+    self.dataController.radioTableController = radioTableController;
     
     IARLMapController *mapController = [[IARLMapController alloc] init];
     UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapController];
-
-    radioTableController.mapView = mapController.mapView;
-    mapController.mapView.delegate = radioTableController;
+    self.dataController.mapController = mapController;
     
     UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
-    splitViewController.delegate = mapController;
-    splitViewController.viewControllers = [NSArray arrayWithObjects:radioNavigationController, mapNavigationController, nil];
+    splitViewController.delegate = self.dataController;
+    splitViewController.viewControllers = [NSArray arrayWithObjects:
+                                           radioNavigationController, 
+                                           mapNavigationController, 
+                                           nil];
     
     self.window.rootViewController = splitViewController;
     self.window.backgroundColor = [UIColor whiteColor];
