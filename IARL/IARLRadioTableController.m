@@ -38,10 +38,6 @@
     _mapView.centerCoordinate = _mapView.userLocation.coordinate;
     
     self.navigationItem.title = @"Radios in Map";
-    self.toolbarItems = [NSArray arrayWithObjects:
-                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL],
-                         [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)], 
-                         nil];
 }
 
 #pragma mark - Table view data source
@@ -140,15 +136,6 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UIPopoverControllerDelegate
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    if (popoverController == _filtersPopoverController) {
-        _filtersPopoverController = nil;
-    }
-}
-
 #pragma mark - API
 
 - (void)annotationDisclosureButtonTapped:(id)sender
@@ -159,18 +146,6 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentModalViewController:navigationController animated:YES];
-}
-
-- (IBAction)filtersButtonTapped:(id)sender
-{
-    if (_filtersPopoverController)
-        return;
-    
-    IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] init];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
-    _filtersPopoverController.delegate = self;
-    [_filtersPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 @end

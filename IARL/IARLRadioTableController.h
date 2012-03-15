@@ -9,9 +9,8 @@
 #import <MapKit/MapKit.h>
 #import "IARLDataStore.h"
 
-@interface IARLRadioTableController : UITableViewController <UIPopoverControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
+@interface IARLRadioTableController : UITableViewController <MKMapViewDelegate,IARLDataStoreDelegate>
 {
-    __strong UIPopoverController *_filtersPopoverController;
 }
 
 @property (nonatomic, strong) IARLDataStore *dataStore;
@@ -19,6 +18,5 @@
 @property (nonatomic, strong) NSArray *radios;
 
 - (void)annotationDisclosureButtonTapped:(id)sender;
-- (IBAction)filtersButtonTapped:(id)sender;
 
 @end

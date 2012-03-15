@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface IARLMapController : UIViewController <UISplitViewControllerDelegate,UISearchBarDelegate,MKMapViewDelegate>
+@interface IARLMapController : UIViewController <UIPopoverControllerDelegate,UISplitViewControllerDelegate,UISearchBarDelegate,MKMapViewDelegate>
+{
+    __strong UIPopoverController *_filtersPopoverController;
+}
 
 @property (nonatomic, strong) MKMapView *mapView;
+
+- (IBAction)filtersButtonTapped:(id)sender;
 
 @end

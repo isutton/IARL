@@ -7,6 +7,7 @@
 //
 
 #import "IARLMapController.h"
+#import "IARLFiltersViewController.h"
 #import "NSString+IARL.h"
 
 @interface IARLMapController ()
@@ -39,7 +40,8 @@
     searchBar.delegate = self;
     searchBar.placeholder = @"Go to Grid Square Locator";
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)];
+
     self.view.autoresizesSubviews = YES;
     [self.view addSubview:_mapView];
 }
@@ -73,6 +75,29 @@
     CLLocationCoordinate2D coordinate = [searchBar.text coordinateFromGridSquareLocator];
     [_mapView setCenterCoordinate:coordinate animated:YES];
     [searchBar resignFirstResponder];
+}
+
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    if (popoverController == _filtersPopoverController) {
+        _filtersPopoverController = nil;
+    }
+}
+
+#pragma mark - API
+
+- (IBAction)filtersButtonTapped:(id)sender
+{
+    if (_filtersPopoverController)
+        return;
+    
+    IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] init];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
+    _filtersPopoverController.delegate = self;
+    [_filtersPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 @end
