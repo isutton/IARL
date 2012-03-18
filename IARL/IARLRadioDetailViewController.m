@@ -27,7 +27,7 @@
     UIBarButtonItem *closeButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneBarButtonTapped:)];
     self.navigationItem.rightBarButtonItem = closeButtonItem;
 
-    self.callLabel.text = _radio.call;
+    self.callLabel.text = _radio.callName;
     self.txLabel.text = [NSString stringWithFormat:@"%@", _radio.tx];
     self.shiftLabel.text = [NSString stringWithFormat:@"%@", _radio.shift];
 }

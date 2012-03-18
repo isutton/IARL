@@ -14,6 +14,8 @@
 
 @synthesize delegate = _delegate;
 @synthesize radios = _radios;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize backgroundManagedObjectContext = _backgroundManagedObjectContext;
 
 - (id)initWithContentsOfFile:(NSString *)filePath
 {
@@ -36,18 +38,33 @@
         // ...
     }
     
+    self.backgroundManagedObjectContext = [[NSManagedObjectContext alloc] init];
+    self.backgroundManagedObjectContext.persistentStoreCoordinator = self.managedObjectContext.persistentStoreCoordinator;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"IARLRadio" inManagedObjectContext:_backgroundManagedObjectContext];
+    
     NSMutableArray *radios = [NSMutableArray arrayWithCapacity:[JSON count]];
+    
     for (NSDictionary *radioDict in JSON) {
         CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[radioDict valueForKeyPath:@"fields.latitude"] floatValue], 
                                                                      [[radioDict valueForKeyPath:@"fields.longitude"] floatValue]);
-        IARLRadio *radio = [[IARLRadio alloc] initWithDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                  [radioDict valueForKeyPath:@"fields.call"], @"call",
-                                                                  [NSValue valueWithBytes:&location objCType:@encode(CLLocationCoordinate2D)], @"coordinate",
-                                                                  [radioDict valueForKey:@"pk"], @"ID",
-                                                                  [NSNumber numberWithInt:[[radioDict valueForKeyPath:@"fields.shift"] intValue]], @"shift",
-                                                                  [NSNumber numberWithUnsignedInt:[[radioDict valueForKeyPath:@"fields.tx"] unsignedIntValue]], @"tx",
-                                                                  nil]];
-        [radios addObject:radio];
+
+        IARLRadio *radio = [[IARLRadio alloc] initWithEntity:entity insertIntoManagedObjectContext:_backgroundManagedObjectContext];
+        radio.radioID = [radioDict valueForKey:@"pk"];
+        radio.callName = [radioDict valueForKeyPath:@"fields.call"];
+        radio.longitude = location.longitude;
+        radio.latitude = location.latitude;
+        radio.shift = [NSNumber numberWithInt:[[radioDict valueForKeyPath:@"fields.shift"] intValue]];
+        radio.tx = [NSNumber numberWithUnsignedInt:[[radioDict valueForKeyPath:@"fields.tx"] unsignedIntValue]];
+    }
+    
+    if (![self.backgroundManagedObjectContext save:&error]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.description delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alertView show];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Task finished" message:@"Radios should've been imported." delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+        [alertView show];
     }
     
     self.radios = radios;

@@ -10,36 +10,28 @@
 
 @implementation IARLRadio
 
-@synthesize call = _call;
-@synthesize coordinate = _coordinate;
-@synthesize ID = _ID;
-@synthesize shift = _shift;
-@synthesize tx = _tx;
-
-- (id)initWithDictionary:(NSDictionary *)dict
-{
-    if (!(self = [self init]))
-        return nil;
-
-    _call = [[dict objectForKey:@"call"] copy];
-    [[dict objectForKey:@"coordinate"] getValue:&_coordinate];
-    _ID = [[dict objectForKey:@"ID"] copy];
-    _shift = [[dict objectForKey:@"shift"] copy];
-    _tx = [[dict objectForKey:@"tx"] copy];
-    
-    return self;
-}
+@dynamic callName;
+@dynamic radioID;
+@dynamic longitude;
+@dynamic latitude;
+@dynamic shift;
+@dynamic tx;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<IARLRadio ID:%@, Call: %@, Longitude:%f, Latitude:%f>", self.ID, self.coordinate.longitude, self.coordinate.latitude];
+    return [NSString stringWithFormat:@"<IARLRadio radioID:%@, Call: %@, Longitude:%f, Latitude:%f>", self.radioID, self.coordinate.longitude, self.coordinate.latitude];
 }
 
 #pragma mark - MKAnnotation
 
 - (NSString *)title
 {
-    return [[NSString stringWithFormat:@"%@", self.call] copy];
+    return [[NSString stringWithFormat:@"%@", self.callName] copy];
+}
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
 }
 
 @end

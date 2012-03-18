@@ -9,14 +9,15 @@
 #import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
 
-@interface IARLRadio : NSObject <MKAnnotation>
+@interface IARLRadio : NSManagedObject <MKAnnotation>
 
-@property (nonatomic, readonly) NSString *ID;
+@property (nonatomic, strong) NSNumber *radioID;
+@property (nonatomic, strong) NSString *callName;
+@property (nonatomic, strong) NSNumber *tx;
+@property (nonatomic, strong) NSNumber *shift;
+@property (nonatomic, assign) double longitude;
+@property (nonatomic, assign) double latitude;
+
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (nonatomic, readonly) NSString *call;
-@property (nonatomic, readonly) NSNumber *tx;
-@property (nonatomic, readonly) NSNumber *shift;
-
-- (id)initWithDictionary:(NSDictionary *)dict;
 
 @end

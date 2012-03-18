@@ -18,7 +18,10 @@
 @property (nonatomic, strong) IARLRadioTableController *radioTableController;
 @property (nonatomic, strong) IARLDataStore *dataStore;
 @property (nonatomic, strong) NSArray *radios;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 - (void)annotationDisclosureButtonTapped:(id)sender;
+
+- (NSArray *)radiosInRegion:(MKCoordinateRegion)region;
 
 @end

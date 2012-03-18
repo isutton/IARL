@@ -18,6 +18,7 @@
 @synthesize mapController = _mapController;
 @synthesize radioTableController = _radioTableController;
 @synthesize radios = _radios;
+@synthesize managedObjectContext = _managedObjectContext;
 
 - (void)setRadioTableController:(IARLRadioTableController *)radioTableController
 {
@@ -57,7 +58,7 @@
     
     IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = radio.call;
+    cell.textLabel.text = radio.callName;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"tx: %@, shift: %@", radio.tx, radio.shift];
     
     return cell;
@@ -82,7 +83,7 @@
         [mapView setRegion:region animated:YES];
     }
     
-    NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[_dataStore radiosInRegion:mapView.region]];
+    NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[self radiosInRegion:mapView.region]];
     self.radios = [radiosInRegion allObjects];
     [self.radioTableController reloadData];
     
@@ -178,6 +179,38 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
     [self.mapController presentModalViewController:navigationController animated:YES];
+}
+
+- (NSArray *)radiosInRegion:(MKCoordinateRegion)region
+{
+    
+    double latitudeDelta = region.span.latitudeDelta / 2.0;
+    double minLatitude = region.center.latitude - latitudeDelta;
+    double maxLatitude = region.center.latitude + latitudeDelta;
+
+    double longitudeDelta = region.span.longitudeDelta / 2.0;
+    double minLongitude = region.center.longitude - longitudeDelta;
+    double maxLongitude = region.center.longitude + longitudeDelta;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"latitude BETWEEN {%@, %@} and longitude BETWEEN {%@, %@}",
+                              [NSNumber numberWithDouble:minLatitude], [NSNumber numberWithDouble:maxLatitude],
+                              [NSNumber numberWithDouble:minLongitude], [NSNumber numberWithDouble:maxLongitude],
+                              nil];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"IARLRadio" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"IARLRadio"];
+    fetchRequest.predicate = predicate;
+    fetchRequest.entity = entity;
+    
+    NSError *error;
+    NSArray *radiosInRegion = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (radiosInRegion == nil) {
+        // error.
+    }
+
+    return radiosInRegion;
 }
 
 @end

@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		82072787150F802F0001388B /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
-		82323FE715109DA50049A90C /* radios.js in Resources */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
 		82323FEA15109F410049A90C /* IARLDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE915109F410049A90C /* IARLDataStore.m */; };
 		82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */; };
 		82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */; };
 		82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */; };
 		82A5C2B7151566D000FE1AE1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C2B6151566D000FE1AE1 /* CoreData.framework */; };
+		82A5C2BB1515681300FE1AE1 /* IARL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */; };
+		82A5C2BD15157BEA00FE1AE1 /* IARL.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */; };
 		82CD3516150F623900BFE036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3515150F623900BFE036 /* UIKit.framework */; };
 		82CD3518150F623900BFE036 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
 		82CD351A150F623900BFE036 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3519150F623900BFE036 /* CoreGraphics.framework */; };
@@ -57,6 +58,8 @@
 		82A01A6D1510EEF200637827 /* IARLFiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLFiltersViewController.h; sourceTree = "<group>"; };
 		82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLFiltersViewController.m; sourceTree = "<group>"; };
 		82A5C2B6151566D000FE1AE1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		82A5C2BA1515681300FE1AE1 /* IARL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IARL.xcdatamodel; sourceTree = "<group>"; };
+		82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = IARL.sqlite; sourceTree = "<group>"; };
 		82CD3511150F623900BFE036 /* IARL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IARL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CD3515150F623900BFE036 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82CD3517150F623900BFE036 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -176,6 +179,7 @@
 				82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */,
 				82E0E3F91512033E0095425C /* IARLDataController.h */,
 				82E0E3FA1512033E0095425C /* IARLDataController.m */,
+				82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */,
 			);
 			path = IARL;
 			sourceTree = "<group>";
@@ -183,6 +187,7 @@
 		82CD351C150F623900BFE036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */,
 				82323FE415109C0B0049A90C /* radios.js */,
 				82CD351D150F623900BFE036 /* IARL-Info.plist */,
 				82CD351E150F623900BFE036 /* InfoPlist.strings */,
@@ -283,9 +288,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82323FE715109DA50049A90C /* radios.js in Resources */,
 				82CD3520150F623900BFE036 /* InfoPlist.strings in Resources */,
 				82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */,
+				82A5C2BD15157BEA00FE1AE1 /* IARL.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +337,7 @@
 				82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */,
 				82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */,
 				82E0E3FB1512033E0095425C /* IARLDataController.m in Sources */,
+				82A5C2BB1515681300FE1AE1 /* IARL.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +513,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				82A5C2BA1515681300FE1AE1 /* IARL.xcdatamodel */,
+			);
+			currentVersion = 82A5C2BA1515681300FE1AE1 /* IARL.xcdatamodel */;
+			path = IARL.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 82CD3508150F623900BFE036 /* Project object */;
 }

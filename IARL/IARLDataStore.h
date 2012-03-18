@@ -20,6 +20,8 @@
 
 @property (nonatomic, assign) id<IARLDataStoreDelegate> delegate;
 @property (nonatomic, strong) NSMutableArray *radios;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *backgroundManagedObjectContext;
 
 - (id)initWithContentsOfFile:(NSString *)filePath;
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region;
