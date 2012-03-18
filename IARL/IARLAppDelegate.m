@@ -25,7 +25,15 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage imageNamed:@"UINavigationBar.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 18, 0, 18)] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:24.0], UITextAttributeFont,
+                                                          [UIColor colorWithRed:0.435 green:0.612 blue:0.518 alpha:1], UITextAttributeTextColor,
+                                                          nil]];
+    [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2.0 forBarMetrics:UIBarMetricsDefault];
+    
+    [[UITextField appearance] setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0]];
+    
     self.dataController = [[IARLDataController alloc] init];
     self.dataController.managedObjectContext = self.managedObjectContext;
     // NSString *JSONDataPath = [[NSBundle mainBundle] pathForResource:@"radios" ofType:@"js"];

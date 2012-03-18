@@ -15,6 +15,11 @@
 		82A5C2B7151566D000FE1AE1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C2B6151566D000FE1AE1 /* CoreData.framework */; };
 		82A5C2BB1515681300FE1AE1 /* IARL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */; };
 		82A5C2BD15157BEA00FE1AE1 /* IARL.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */; };
+		82A5C2C415157DEB00FE1AE1 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82A5C2B6151566D000FE1AE1 /* CoreData.framework */; };
+		82A5C2C515157DEB00FE1AE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
+		82A5C2C815157DEB00FE1AE1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C2C715157DEB00FE1AE1 /* main.m */; };
+		82A5C2D315157E3F00FE1AE1 /* IARL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */; };
+		82A5C2D5151691FE00FE1AE1 /* UINavigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 82A5C2D4151691FE00FE1AE1 /* UINavigationBar.png */; };
 		82CD3516150F623900BFE036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3515150F623900BFE036 /* UIKit.framework */; };
 		82CD3518150F623900BFE036 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3517150F623900BFE036 /* Foundation.framework */; };
 		82CD351A150F623900BFE036 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD3519150F623900BFE036 /* CoreGraphics.framework */; };
@@ -60,6 +65,10 @@
 		82A5C2B6151566D000FE1AE1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		82A5C2BA1515681300FE1AE1 /* IARL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IARL.xcdatamodel; sourceTree = "<group>"; };
 		82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = IARL.sqlite; sourceTree = "<group>"; };
+		82A5C2C215157DEB00FE1AE1 /* Database Loader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Database Loader"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82A5C2C715157DEB00FE1AE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		82A5C2CA15157DEB00FE1AE1 /* Database Loader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Database Loader-Prefix.pch"; sourceTree = "<group>"; };
+		82A5C2D4151691FE00FE1AE1 /* UINavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBar.png; sourceTree = "<group>"; };
 		82CD3511150F623900BFE036 /* IARL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IARL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82CD3515150F623900BFE036 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		82CD3517150F623900BFE036 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +102,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		82A5C2BF15157DEB00FE1AE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82A5C2C415157DEB00FE1AE1 /* CoreData.framework in Frameworks */,
+				82A5C2C515157DEB00FE1AE1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82CD350E150F623900BFE036 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -119,11 +137,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82A5C2C615157DEB00FE1AE1 /* Database Loader */ = {
+			isa = PBXGroup;
+			children = (
+				82A5C2C715157DEB00FE1AE1 /* main.m */,
+				82A5C2C915157DEB00FE1AE1 /* Supporting Files */,
+			);
+			path = "Database Loader";
+			sourceTree = "<group>";
+		};
+		82A5C2C915157DEB00FE1AE1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				82A5C2CA15157DEB00FE1AE1 /* Database Loader-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		82CD3506150F623900BFE036 = {
 			isa = PBXGroup;
 			children = (
 				82CD351B150F623900BFE036 /* IARL */,
 				82CD3533150F623900BFE036 /* IARLTests */,
+				82A5C2C615157DEB00FE1AE1 /* Database Loader */,
 				82CD3514150F623900BFE036 /* Frameworks */,
 				82CD3512150F623900BFE036 /* Products */,
 			);
@@ -134,6 +170,7 @@
 			children = (
 				82CD3511150F623900BFE036 /* IARL.app */,
 				82CD352C150F623900BFE036 /* IARLTests.octest */,
+				82A5C2C215157DEB00FE1AE1 /* Database Loader */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +224,7 @@
 		82CD351C150F623900BFE036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				82A5C2D4151691FE00FE1AE1 /* UINavigationBar.png */,
 				82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */,
 				82323FE415109C0B0049A90C /* radios.js */,
 				82CD351D150F623900BFE036 /* IARL-Info.plist */,
@@ -219,6 +257,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		82A5C2C115157DEB00FE1AE1 /* Database Loader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "Database Loader" */;
+			buildPhases = (
+				82A5C2BE15157DEB00FE1AE1 /* Sources */,
+				82A5C2BF15157DEB00FE1AE1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Database Loader";
+			productName = "Database Loader";
+			productReference = 82A5C2C215157DEB00FE1AE1 /* Database Loader */;
+			productType = "com.apple.product-type.tool";
+		};
 		82CD3510150F623900BFE036 /* IARL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82CD353E150F623900BFE036 /* Build configuration list for PBXNativeTarget "IARL" */;
@@ -279,6 +333,7 @@
 			targets = (
 				82CD3510150F623900BFE036 /* IARL */,
 				82CD352B150F623900BFE036 /* IARLTests */,
+				82A5C2C115157DEB00FE1AE1 /* Database Loader */,
 			);
 		};
 /* End PBXProject section */
@@ -291,6 +346,7 @@
 				82CD3520150F623900BFE036 /* InfoPlist.strings in Resources */,
 				82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */,
 				82A5C2BD15157BEA00FE1AE1 /* IARL.sqlite in Resources */,
+				82A5C2D5151691FE00FE1AE1 /* UINavigationBar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +377,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		82A5C2BE15157DEB00FE1AE1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82A5C2D315157E3F00FE1AE1 /* IARL.xcdatamodeld in Sources */,
+				82A5C2C815157DEB00FE1AE1 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82CD350D150F623900BFE036 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +444,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		82A5C2D115157DEB00FE1AE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Database Loader/Database Loader-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		82A5C2D215157DEB00FE1AE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Database Loader/Database Loader-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 		82CD353C150F623900BFE036 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -485,6 +580,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "Database Loader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82A5C2D115157DEB00FE1AE1 /* Debug */,
+				82A5C2D215157DEB00FE1AE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		82CD350B150F623900BFE036 /* Build configuration list for PBXProject "IARL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

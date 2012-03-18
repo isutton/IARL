@@ -54,6 +54,10 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
+        cell.textLabel.textColor = [UIColor colorWithRed:0.435 green:0.612 blue:0.518 alpha:1];
+        cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:0.682 green:0.761 blue:0.722 alpha:1];
     }
     
     IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];

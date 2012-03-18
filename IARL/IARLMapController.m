@@ -40,6 +40,11 @@
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 22.0)];
     searchBar.delegate = self;
     searchBar.placeholder = @"Go to Grid Square Locator";
+    
+    UITextField *searchBarTextField = [searchBar.subviews objectAtIndex:1];
+    [searchBarTextField setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:16.0]];
+    [searchBarTextField setContentVerticalAlignment:UIControlContentVerticalAlignmentFill];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)]];
 
