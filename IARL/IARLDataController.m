@@ -99,17 +99,16 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Foo"];
+    static NSString *AnnotationReuseIdentifier = @"AnnotationReuseIdentifier";
+    MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationReuseIdentifier];
     
     if (!annotationView) {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Foo"];
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationReuseIdentifier];
     }
     
     annotationView.annotation = annotation;
-    annotationView.animatesDrop = NO;
     
     if (annotation == mapView.userLocation) {
-        annotationView.pinColor = MKPinAnnotationColorPurple;
         annotationView.canShowCallout = NO;
     }
     else {
