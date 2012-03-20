@@ -85,7 +85,7 @@
 		82A5C2B6151566D000FE1AE1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		82A5C2BA1515681300FE1AE1 /* IARL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IARL.xcdatamodel; sourceTree = "<group>"; };
 		82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = IARL.sqlite; sourceTree = "<group>"; };
-		82A5C2C215157DEB00FE1AE1 /* Database Loader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Database Loader"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82A5C2C215157DEB00FE1AE1 /* Database Loader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = "Database Loader"; path = "database-loader"; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A5C2C715157DEB00FE1AE1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82A5C2CA15157DEB00FE1AE1 /* Database Loader-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Database Loader-Prefix.pch"; sourceTree = "<group>"; };
 		82A5C2D4151691FE00FE1AE1 /* UINavigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UINavigationBar.png; sourceTree = "<group>"; };
@@ -166,8 +166,9 @@
 		82A5C2C615157DEB00FE1AE1 /* database-loader */ = {
 			isa = PBXGroup;
 			children = (
-				82A5C2C715157DEB00FE1AE1 /* main.m */,
 				82A5C2C915157DEB00FE1AE1 /* Supporting Files */,
+				82E47C1A15189A5F00B5C160 /* Frameworks */,
+				82A5C2C715157DEB00FE1AE1 /* main.m */,
 			);
 			name = "database-loader";
 			path = "Database Loader";
@@ -184,7 +185,6 @@
 		82CD3506150F623900BFE036 = {
 			isa = PBXGroup;
 			children = (
-				82E0E40A15188B850095425C /* CoreLocation.framework */,
 				82CD351B150F623900BFE036 /* IARL */,
 				82CD3533150F623900BFE036 /* IARLTests */,
 				82A5C2C615157DEB00FE1AE1 /* database-loader */,
@@ -284,6 +284,14 @@
 				82CD3536150F623900BFE036 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		82E47C1A15189A5F00B5C160 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82E0E40A15188B850095425C /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
