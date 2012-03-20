@@ -10,6 +10,4 @@
 
 @interface IARLBandFilterViewController : UITableViewController <IARLFilterConfigurable>
 
-@property (nonatomic, strong) NSArray *bands;
-
 @end

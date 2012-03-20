@@ -63,9 +63,9 @@
 - (void)viewDidLoad
 {
     self.navigationItem.title = @"Radios in Map";
-    _searchBar = [[UISearchBar alloc] init];
-    self.tableView.tableHeaderView = _searchBar;
-    [_searchBar sizeToFit];
+//    _searchBar = [[UISearchBar alloc] init];
+//    self.tableView.tableHeaderView = _searchBar;
+//    [_searchBar sizeToFit];
 }
 
 - (void)reloadData

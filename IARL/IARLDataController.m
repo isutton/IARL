@@ -11,6 +11,7 @@
 #import "IARLRadioTableController.h"
 #import "IARLRadioDetailViewController.h"
 #import "IARLRadio.h"
+#import "NSNumber+IARL.h"
 
 @implementation IARLDataController
 
@@ -54,6 +55,7 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell.backgroundView.backgroundColor = [UIColor blackColor];
         cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
         cell.textLabel.textColor = [UIColor colorWithRed:0.435 green:0.612 blue:0.518 alpha:1];
         cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14.0];
@@ -64,6 +66,15 @@
     
     cell.textLabel.text = radio.callName;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"tx: %@, shift: %@", radio.tx, radio.shift];
+
+    NSString *band = [radio.tx bandFromFrequency];
+    
+    if ([band isEqualToString:@"HF"])
+        cell.imageView.image = [UIImage imageNamed:@"tower_blue.png"];
+    else if ([band isEqualToString:@"VHF"])
+        cell.imageView.image = [UIImage imageNamed:@"tower_red.png"];
+    else if ([band isEqualToString:@"UHF"])
+        cell.imageView.image = [UIImage imageNamed:@"tower_orange.png"];
     
     return cell;
 }
@@ -112,7 +123,15 @@
         annotationView.canShowCallout = NO;
     }
     else {
-        annotationView.image = [UIImage imageNamed:@"tower_red.png"];
+        NSString *band = [((IARLRadio *)annotation).tx bandFromFrequency];
+        
+        if ([band isEqualToString:@"HF"])
+            annotationView.image = [UIImage imageNamed:@"tower_blue.png"];
+        else if ([band isEqualToString:@"VHF"])
+            annotationView.image = [UIImage imageNamed:@"tower_red.png"];
+        else if ([band isEqualToString:@"UHF"])
+            annotationView.image = [UIImage imageNamed:@"tower_orange.png"];
+
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [callOutButton addTarget:self action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];

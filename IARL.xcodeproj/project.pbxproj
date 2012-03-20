@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		82072787150F802F0001388B /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
+		820A026C1518D74D00FF0220 /* NSNumber+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 820A026B1518D74D00FF0220 /* NSNumber+IARL.m */; };
+		820A026F1518DA6500FF0220 /* tower_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 820A026E1518DA6500FF0220 /* tower_blue.png */; };
 		82323FEA15109F410049A90C /* IARLDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE915109F410049A90C /* IARLDataStore.m */; };
 		82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */; };
 		82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */; };
@@ -74,6 +76,9 @@
 /* Begin PBXFileReference section */
 		82072785150F802F0001388B /* IARLRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRadio.h; sourceTree = "<group>"; };
 		82072786150F802F0001388B /* IARLRadio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLRadio.m; sourceTree = "<group>"; };
+		820A026A1518D74D00FF0220 /* NSNumber+IARL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+IARL.h"; sourceTree = "<group>"; };
+		820A026B1518D74D00FF0220 /* NSNumber+IARL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IARL.m"; sourceTree = "<group>"; };
+		820A026E1518DA6500FF0220 /* tower_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_blue.png; sourceTree = "<group>"; };
 		82323FE415109C0B0049A90C /* radios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = radios.js; sourceTree = "<group>"; };
 		82323FE815109F410049A90C /* IARLDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataStore.h; sourceTree = "<group>"; };
 		82323FE915109F410049A90C /* IARLDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataStore.m; sourceTree = "<group>"; };
@@ -245,6 +250,8 @@
 				82E0E3F91512033E0095425C /* IARLDataController.h */,
 				82E0E3FA1512033E0095425C /* IARLDataController.m */,
 				82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */,
+				820A026A1518D74D00FF0220 /* NSNumber+IARL.h */,
+				820A026B1518D74D00FF0220 /* NSNumber+IARL.m */,
 			);
 			path = IARL;
 			sourceTree = "<group>";
@@ -252,6 +259,7 @@
 		82CD351C150F623900BFE036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				820A026E1518DA6500FF0220 /* tower_blue.png */,
 				82E0E40C151897AA0095425C /* tower_green.png */,
 				82E0E40D151897AA0095425C /* tower_orange.png */,
 				82E0E40E151897AA0095425C /* tower_purple.png */,
@@ -392,6 +400,7 @@
 				82E0E411151897AA0095425C /* tower_orange.png in Resources */,
 				82E0E412151897AA0095425C /* tower_purple.png in Resources */,
 				82E0E413151897AA0095425C /* tower_red.png in Resources */,
+				820A026F1518DA6500FF0220 /* tower_blue.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +458,7 @@
 				82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */,
 				82E0E3FB1512033E0095425C /* IARLDataController.m in Sources */,
 				82A5C2BB1515681300FE1AE1 /* IARL.xcdatamodeld in Sources */,
+				820A026C1518D74D00FF0220 /* NSNumber+IARL.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

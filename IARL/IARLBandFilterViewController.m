@@ -14,8 +14,6 @@
 
 @implementation IARLBandFilterViewController
 
-@synthesize bands = _bands;
-
 - (NSString *)name
 {
     return @"Bands";
@@ -24,8 +22,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    _bands = [[NSArray alloc] initWithObjects:@"2m", @"1m", nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -42,7 +38,7 @@
 {
     switch (section) {
         case 0:
-            return [self.bands count];
+            return 3;
             break;
             
         default:
@@ -74,9 +70,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    switch (indexPath.section) {
+    switch (indexPath.row) {
         case 0:
-            cell.textLabel.text = [self.bands objectAtIndex:indexPath.row];
+            cell.textLabel.text = @"HF";
+            cell.imageView.image = [UIImage imageNamed:@"tower_blue.png"];
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"VHF";
+            cell.imageView.image = [UIImage imageNamed:@"tower_red.png"];
+            break;
+            
+        case 2:
+            cell.textLabel.text = @"UHF";
+            cell.imageView.image = [UIImage imageNamed:@"tower_orange.png"];
             break;
             
         default:

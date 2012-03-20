@@ -23,7 +23,7 @@
     
     _filters = [NSArray arrayWithObjects:
                 [[IARLBandFilterViewController alloc] initWithStyle:UITableViewStyleGrouped],
-                [[IARLDeviceFilterViewController alloc] initWithStyle:UITableViewStyleGrouped],
+                // [[IARLDeviceFilterViewController alloc] initWithStyle:UITableViewStyleGrouped],
                 nil];
     
     return self;
@@ -49,11 +49,15 @@
     
     _filterTypesControl = [[UISegmentedControl alloc] initWithItems:filterNames];
     _filterTypesControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    _filterTypesControl.frame = CGRectInset(self.navigationController.navigationBar.bounds, 7.0, 7.0);
+    
+    _filterTypesControl.frame = CGRectInset(self.navigationController.navigationBar.bounds, 9.0, 9.0);
     _filterTypesControl.selectedSegmentIndex = _visibleFilterTypeIndex;
     self.navigationItem.titleView = _filterTypesControl;
     [_filterTypesControl addTarget:self action:@selector(filterTypeChanged:) forControlEvents:UIControlEventValueChanged];
 
+    if ([_filters count] == 1) {
+        self.navigationController.navigationBarHidden = YES;
+    }
     
     [self displayViewControllerAtIndex:_visibleFilterTypeIndex];
 }
@@ -70,7 +74,7 @@
 
 - (CGSize)contentSizeForViewInPopover
 {
-    return CGSizeMake(320.0, 300.0);
+    return CGSizeMake(320.0, 180.0);
 }
 
 #pragma mark - API
