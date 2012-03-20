@@ -39,6 +39,9 @@
 		82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */; };
 		82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */; };
 		82E0E3FB1512033E0095425C /* IARLDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3FA1512033E0095425C /* IARLDataController.m */; };
+		82E0E40715188A170095425C /* radios.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
+		82E0E40815188B3B0095425C /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
+		82E0E40B15188B850095425C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0E40A15188B850095425C /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,19 @@
 			remoteInfo = IARL;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		82E0E40615188A040095425C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				82E0E40715188A170095425C /* radios.js in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		82072785150F802F0001388B /* IARLRadio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRadio.h; sourceTree = "<group>"; };
@@ -99,6 +115,7 @@
 		82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDeviceFilterViewController.m; sourceTree = "<group>"; };
 		82E0E3F91512033E0095425C /* IARLDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataController.h; sourceTree = "<group>"; };
 		82E0E3FA1512033E0095425C /* IARLDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataController.m; sourceTree = "<group>"; };
+		82E0E40A15188B850095425C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82E0E40B15188B850095425C /* CoreLocation.framework in Frameworks */,
 				82A5C2C415157DEB00FE1AE1 /* CoreData.framework in Frameworks */,
 				82A5C2C515157DEB00FE1AE1 /* Foundation.framework in Frameworks */,
 			);
@@ -158,6 +176,7 @@
 		82CD3506150F623900BFE036 = {
 			isa = PBXGroup;
 			children = (
+				82E0E40A15188B850095425C /* CoreLocation.framework */,
 				82CD351B150F623900BFE036 /* IARL */,
 				82CD3533150F623900BFE036 /* IARLTests */,
 				82A5C2C615157DEB00FE1AE1 /* database-loader */,
@@ -264,6 +283,7 @@
 			buildPhases = (
 				82A5C2BE15157DEB00FE1AE1 /* Sources */,
 				82A5C2BF15157DEB00FE1AE1 /* Frameworks */,
+				82E0E40615188A040095425C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -333,8 +353,8 @@
 			projectRoot = "";
 			targets = (
 				82CD3510150F623900BFE036 /* IARL */,
-				82CD352B150F623900BFE036 /* IARLTests */,
 				82A5C2C115157DEB00FE1AE1 /* database-loader */,
+				82CD352B150F623900BFE036 /* IARLTests */,
 			);
 		};
 /* End PBXProject section */
@@ -383,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A5C2D315157E3F00FE1AE1 /* IARL.xcdatamodeld in Sources */,
+				82E0E40815188B3B0095425C /* IARLRadio.m in Sources */,
 				82A5C2C815157DEB00FE1AE1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

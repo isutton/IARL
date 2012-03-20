@@ -7,9 +7,15 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
-#import <MapKit/MapKit.h>
+#if TARGET_OS_IPHONE
+    #import <MapKit/MapKit.h>
+#endif
 
-@interface IARLRadio : NSManagedObject <MKAnnotation>
+#if TARGET_OS_IPHONE
+    @interface IARLRadio : NSManagedObject <MKAnnotation>
+#else
+    @interface IARLRadio : NSManagedObject
+#endif
 
 @property (nonatomic, strong) NSNumber *radioID;
 @property (nonatomic, strong) NSString *callName;

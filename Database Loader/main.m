@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 igorsutton.com. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
+#import "IARLRadio.h"
+
 static NSManagedObjectModel *managedObjectModel()
 {
     static NSManagedObjectModel *model = nil;
@@ -59,9 +62,31 @@ int main(int argc, const char * argv[])
         // Create the managed object context
         NSManagedObjectContext *context = managedObjectContext();
         
-        // Custom code here...
-        // Save the managed object context
-        NSError *error = nil;
+        NSData *JSONData = [NSData dataWithContentsOfFile:@"radios.js"];
+        
+        NSError *error;
+        NSArray *JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:NSJSONReadingMutableLeaves error:&error];
+        
+        if (error) {
+            // ...
+        }
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"IARLRadio" inManagedObjectContext:context];
+        
+        for (NSDictionary *radioDict in JSON) {
+            CLLocationCoordinate2D location = CLLocationCoordinate2DMake([[radioDict valueForKeyPath:@"fields.latitude"] floatValue], 
+                                                                         [[radioDict valueForKeyPath:@"fields.longitude"] floatValue]);
+            
+            IARLRadio *radio = [[IARLRadio alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+            radio.radioID = [radioDict valueForKey:@"pk"];
+            radio.callName = [radioDict valueForKeyPath:@"fields.call"];
+            radio.longitude = location.longitude;
+            radio.latitude = location.latitude;
+            radio.shift = [NSNumber numberWithInt:[[radioDict valueForKeyPath:@"fields.shift"] intValue]];
+            radio.tx = [NSNumber numberWithUnsignedInt:[[radioDict valueForKeyPath:@"fields.tx"] unsignedIntValue]];
+        }
+
+        error = nil;
         if (![context save:&error]) {
             NSLog(@"Error while saving %@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
             exit(1);
