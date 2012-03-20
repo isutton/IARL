@@ -42,6 +42,10 @@
 		82E0E40715188A170095425C /* radios.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
 		82E0E40815188B3B0095425C /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
 		82E0E40B15188B850095425C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E0E40A15188B850095425C /* CoreLocation.framework */; };
+		82E0E410151897AA0095425C /* tower_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0E40C151897AA0095425C /* tower_green.png */; };
+		82E0E411151897AA0095425C /* tower_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0E40D151897AA0095425C /* tower_orange.png */; };
+		82E0E412151897AA0095425C /* tower_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0E40E151897AA0095425C /* tower_purple.png */; };
+		82E0E413151897AA0095425C /* tower_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E0E40F151897AA0095425C /* tower_red.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +120,10 @@
 		82E0E3F91512033E0095425C /* IARLDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataController.h; sourceTree = "<group>"; };
 		82E0E3FA1512033E0095425C /* IARLDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataController.m; sourceTree = "<group>"; };
 		82E0E40A15188B850095425C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		82E0E40C151897AA0095425C /* tower_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_green.png; sourceTree = "<group>"; };
+		82E0E40D151897AA0095425C /* tower_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_orange.png; sourceTree = "<group>"; };
+		82E0E40E151897AA0095425C /* tower_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_purple.png; sourceTree = "<group>"; };
+		82E0E40F151897AA0095425C /* tower_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_red.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +252,10 @@
 		82CD351C150F623900BFE036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				82E0E40C151897AA0095425C /* tower_green.png */,
+				82E0E40D151897AA0095425C /* tower_orange.png */,
+				82E0E40E151897AA0095425C /* tower_purple.png */,
+				82E0E40F151897AA0095425C /* tower_red.png */,
 				82A5C2D4151691FE00FE1AE1 /* UINavigationBar.png */,
 				82A5C2BC15157BEA00FE1AE1 /* IARL.sqlite */,
 				82323FE415109C0B0049A90C /* radios.js */,
@@ -368,6 +380,10 @@
 				82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */,
 				82A5C2BD15157BEA00FE1AE1 /* IARL.sqlite in Resources */,
 				82A5C2D5151691FE00FE1AE1 /* UINavigationBar.png in Resources */,
+				82E0E410151897AA0095425C /* tower_green.png in Resources */,
+				82E0E411151897AA0095425C /* tower_orange.png in Resources */,
+				82E0E412151897AA0095425C /* tower_purple.png in Resources */,
+				82E0E413151897AA0095425C /* tower_red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

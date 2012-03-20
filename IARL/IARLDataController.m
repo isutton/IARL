@@ -113,6 +113,7 @@
         annotationView.canShowCallout = NO;
     }
     else {
+        annotationView.image = [UIImage imageNamed:@"tower_red.png"];
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [callOutButton addTarget:self action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
