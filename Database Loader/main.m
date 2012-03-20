@@ -15,6 +15,7 @@ static NSManagedObjectModel *managedObjectModel()
     
     NSString *path = [[[NSProcessInfo processInfo] arguments] objectAtIndex:0];
     path = [path stringByDeletingLastPathComponent];
+    path = [path stringByAppendingPathComponent:@"IARL"];
     NSURL *modelURL = [NSURL fileURLWithPath:[path stringByAppendingPathExtension:@"momd"]];
     model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     
@@ -37,7 +38,8 @@ static NSManagedObjectContext *managedObjectContext()
         NSString *STORE_TYPE = NSSQLiteStoreType;
         
         NSString *path = [[[NSProcessInfo processInfo] arguments] objectAtIndex:0];
-        path = [path stringByDeletingPathExtension];
+        path = [path stringByDeletingLastPathComponent];
+        path = [path stringByAppendingPathComponent:@"IARL"];
         NSURL *url = [NSURL fileURLWithPath:[path stringByAppendingPathExtension:@"sqlite"]];
         
         NSError *error;

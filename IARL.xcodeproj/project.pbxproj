@@ -137,12 +137,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		82A5C2C615157DEB00FE1AE1 /* Database Loader */ = {
+		82A5C2C615157DEB00FE1AE1 /* database-loader */ = {
 			isa = PBXGroup;
 			children = (
 				82A5C2C715157DEB00FE1AE1 /* main.m */,
 				82A5C2C915157DEB00FE1AE1 /* Supporting Files */,
 			);
+			name = "database-loader";
 			path = "Database Loader";
 			sourceTree = "<group>";
 		};
@@ -159,7 +160,7 @@
 			children = (
 				82CD351B150F623900BFE036 /* IARL */,
 				82CD3533150F623900BFE036 /* IARLTests */,
-				82A5C2C615157DEB00FE1AE1 /* Database Loader */,
+				82A5C2C615157DEB00FE1AE1 /* database-loader */,
 				82CD3514150F623900BFE036 /* Frameworks */,
 				82CD3512150F623900BFE036 /* Products */,
 			);
@@ -257,9 +258,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		82A5C2C115157DEB00FE1AE1 /* Database Loader */ = {
+		82A5C2C115157DEB00FE1AE1 /* database-loader */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "Database Loader" */;
+			buildConfigurationList = 82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "database-loader" */;
 			buildPhases = (
 				82A5C2BE15157DEB00FE1AE1 /* Sources */,
 				82A5C2BF15157DEB00FE1AE1 /* Frameworks */,
@@ -268,7 +269,7 @@
 			);
 			dependencies = (
 			);
-			name = "Database Loader";
+			name = "database-loader";
 			productName = "Database Loader";
 			productReference = 82A5C2C215157DEB00FE1AE1 /* Database Loader */;
 			productType = "com.apple.product-type.tool";
@@ -333,7 +334,7 @@
 			targets = (
 				82CD3510150F623900BFE036 /* IARL */,
 				82CD352B150F623900BFE036 /* IARLTests */,
-				82A5C2C115157DEB00FE1AE1 /* Database Loader */,
+				82A5C2C115157DEB00FE1AE1 /* database-loader */,
 			);
 		};
 /* End PBXProject section */
@@ -580,13 +581,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "Database Loader" */ = {
+		82A5C2D015157DEB00FE1AE1 /* Build configuration list for PBXNativeTarget "database-loader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82A5C2D115157DEB00FE1AE1 /* Debug */,
 				82A5C2D215157DEB00FE1AE1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82CD350B150F623900BFE036 /* Build configuration list for PBXProject "IARL" */ = {
 			isa = XCConfigurationList;
