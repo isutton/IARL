@@ -10,10 +10,11 @@
 
 @implementation IARLRadio
 
+@dynamic band;
 @dynamic callName;
-@dynamic radioID;
-@dynamic longitude;
 @dynamic latitude;
+@dynamic longitude;
+@dynamic radioID;
 @dynamic shift;
 @dynamic tx;
 

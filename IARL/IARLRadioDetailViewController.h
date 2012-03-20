@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *callLabel;
 @property (strong, nonatomic) IBOutlet UILabel *txLabel;
 @property (strong, nonatomic) IBOutlet UILabel *shiftLabel;
+@property (strong, nonatomic) IBOutlet UILabel *bandLabel;
 @property (weak, nonatomic) IARLRadio *radio;
 
 - (void)doneBarButtonTapped:(id)sender;

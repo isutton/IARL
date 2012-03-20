@@ -17,12 +17,13 @@
     @interface IARLRadio : NSManagedObject
 #endif
 
-@property (nonatomic, strong) NSNumber *radioID;
-@property (nonatomic, strong) NSString *callName;
-@property (nonatomic, strong) NSNumber *tx;
-@property (nonatomic, strong) NSNumber *shift;
-@property (nonatomic, assign) double longitude;
 @property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
+@property (nonatomic, copy) NSString *band;
+@property (nonatomic, strong) NSNumber *radioID;
+@property (nonatomic, strong) NSNumber *shift;
+@property (nonatomic, strong) NSNumber *tx;
+@property (nonatomic, strong) NSString *callName;
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 

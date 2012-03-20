@@ -78,6 +78,7 @@ int main(int argc, const char * argv[])
                                                                          [[radioDict valueForKeyPath:@"fields.longitude"] floatValue]);
             
             IARLRadio *radio = [[IARLRadio alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+            radio.band = [radioDict valueForKeyPath:@"fields.band"];
             radio.radioID = [radioDict valueForKey:@"pk"];
             radio.callName = [radioDict valueForKeyPath:@"fields.call"];
             radio.longitude = location.longitude;

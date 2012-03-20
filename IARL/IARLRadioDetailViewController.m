@@ -18,6 +18,7 @@
 @synthesize callLabel;
 @synthesize txLabel;
 @synthesize shiftLabel;
+@synthesize bandLabel;
 @synthesize radio = _radio;
 
 - (void)viewDidLoad
@@ -30,6 +31,7 @@
     self.callLabel.text = _radio.callName;
     self.txLabel.text = [NSString stringWithFormat:@"%@", _radio.tx];
     self.shiftLabel.text = [NSString stringWithFormat:@"%@", _radio.shift];
+    self.bandLabel.text = [NSString stringWithFormat:@"%@", _radio.band];
 }
 
 - (void)viewDidUnload
@@ -37,6 +39,7 @@
     [self setCallLabel:nil];
     [self setTxLabel:nil];
     [self setShiftLabel:nil];
+    [self setBandLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11D50b" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="IARLRadio" representedClassName="IARLRadio" syncable="YES">
+        <attribute name="band" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="callName" attributeType="String" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" indexed="YES" syncable="YES"/>
@@ -9,6 +10,6 @@
         <attribute name="tx" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IARLRadio" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="IARLRadio" positionX="160" positionY="192" width="128" height="150"/>
     </elements>
 </model>
