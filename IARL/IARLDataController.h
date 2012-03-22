@@ -19,6 +19,7 @@
 @property (nonatomic, strong) IARLDataStore *dataStore;
 @property (nonatomic, strong) NSArray *radios;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSSet *bandFilter;
 
 - (void)annotationDisclosureButtonTapped:(id)sender;
 

@@ -20,6 +20,7 @@
 @synthesize radioTableController = _radioTableController;
 @synthesize radios = _radios;
 @synthesize managedObjectContext = _managedObjectContext;
+@synthesize bandFilter = _bandFilter;
 
 - (void)setRadioTableController:(IARLRadioTableController *)radioTableController
 {
