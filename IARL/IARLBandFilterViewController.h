@@ -8,6 +8,16 @@
 
 #import "IARLFiltersViewController.h"
 
+@class  IARLBandFilterViewController;
+
+@protocol IARLBandFilterDelegate <NSObject,IARLFilterDelegate>
+
+- (void)bandFilterControllerDidChangeFilter:(IARLBandFilterViewController *)bandFilterController;
+
+@end
+
 @interface IARLBandFilterViewController : UITableViewController <IARLFilterConfigurable>
+
+@property (nonatomic, weak) id<IARLBandFilterDelegate> delegate;
 
 @end

@@ -8,12 +8,14 @@
 
 #import <MapKit/MapKit.h>
 #import "IARLDataStore.h"
+#import "IARLBandFilterViewController.h"
 
 @class IARLRadioTableController;
 @class IARLMapController;
 
-@interface IARLDataController : NSObject <UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UISplitViewControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
-
+@interface IARLDataController : NSObject <IARLBandFilterDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UISplitViewControllerDelegate,MKMapViewDelegate,IARLDataStoreDelegate>
+{
+}
 @property (nonatomic, strong) IARLMapController *mapController;
 @property (nonatomic, strong) IARLRadioTableController *radioTableController;
 @property (nonatomic, strong) IARLDataStore *dataStore;

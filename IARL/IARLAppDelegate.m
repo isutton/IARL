@@ -48,6 +48,7 @@
     IARLMapController *mapController = [[IARLMapController alloc] init];
     UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapController];
     self.dataController.mapController = mapController;
+    mapController.dataController = self.dataController;
     
     UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
     splitViewController.delegate = self.dataController;

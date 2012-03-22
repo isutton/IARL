@@ -16,6 +16,8 @@
 
 @implementation IARLFiltersViewController
 
+@synthesize delegate = _delegate;
+
 - (id)init
 {
     if (!(self = [super init]))
@@ -29,6 +31,12 @@
     return self;
 }
 
+- (void)setDelegate:(id<IARLFilterDelegate>)delegate
+{
+    _delegate = delegate;
+    [_filters makeObjectsPerformSelector:@selector(setDelegate:) withObject:_delegate];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
@@ -38,7 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     _visibleFilterTypeIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"IARLVisibleFilterTypeIndex"];
     
     NSMutableArray *filterNames = [NSMutableArray arrayWithCapacity:[_filters count]];
@@ -65,6 +73,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [_filters makeObjectsPerformSelector:@selector(setDelegate:) withObject:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

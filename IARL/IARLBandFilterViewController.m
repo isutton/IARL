@@ -14,6 +14,8 @@
 
 @implementation IARLBandFilterViewController
 
+@synthesize delegate = _delegate;
+
 - (NSString *)name
 {
     return @"Bands";
@@ -102,6 +104,8 @@
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.delegate bandFilterControllerDidChangeFilter:self];
 }
 
 @end

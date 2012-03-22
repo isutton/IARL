@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface IARLMapController : UIViewController <UIPopoverControllerDelegate,UISearchBarDelegate,MKMapViewDelegate>
+@class IARLDataController;
+
+@interface IARLMapController : UIViewController <UIPopoverControllerDelegate,UISearchBarDelegate>
 {
     __strong UIPopoverController *_filtersPopoverController;
 }
@@ -18,6 +20,7 @@
 @property (nonatomic, weak) id<MKMapViewDelegate>delegate;
 @property (nonatomic, readonly) MKCoordinateRegion region;
 @property (nonatomic, readonly) NSArray *selectedAnnotations;
+@property (nonatomic, weak) IARLDataController *dataController;
 
 - (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated;
 - (void)addAnnotations:(NSArray *)annotations;

@@ -193,6 +193,13 @@
     [self.radioTableController reloadData];
 }
 
+#pragma mark - IARLBandFilterDelegate
+
+- (void)bandFilterControllerDidChangeFilter:(IARLBandFilterViewController *)bandFilterController
+{
+    NSLog(@"Foo");
+}
+
 #pragma mark - API
 
 - (void)annotationDisclosureButtonTapped:(id)sender

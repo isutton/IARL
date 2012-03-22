@@ -9,6 +9,7 @@
 #import "IARLMapController.h"
 #import "IARLFiltersViewController.h"
 #import "NSString+IARL.h"
+#import "IARLDataController.h"
 
 @interface IARLMapController ()
 
@@ -18,6 +19,7 @@
 
 @dynamic delegate;
 @synthesize mapView = _mapView;
+@synthesize dataController = _dataController;
 
 - (id)init
 {
@@ -121,6 +123,7 @@
         return;
     
     IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] init];
+    vc.delegate = self.dataController;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
     _filtersPopoverController.delegate = self;
