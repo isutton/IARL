@@ -50,6 +50,13 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)]];
 
+    self.navigationController.toolbarHidden = NO;
+    
+    self.toolbarItems = [NSArray arrayWithObjects:
+                         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:NULL],
+                         [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"22-location-arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(locationButtonTapped:)], 
+                         nil];
+    
     self.view.autoresizesSubviews = YES;
     [self.view addSubview:_mapView];
 }
@@ -128,6 +135,11 @@
     _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
     _filtersPopoverController.delegate = self;
     [_filtersPopoverController presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+- (IBAction)locationButtonTapped:(id)sender
+{
+    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
 }
 
 @end

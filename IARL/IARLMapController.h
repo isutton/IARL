@@ -25,5 +25,6 @@
 - (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated;
 - (void)addAnnotations:(NSArray *)annotations;
 - (IBAction)filtersButtonTapped:(id)sender;
+- (IBAction)locationButtonTapped:(id)sender;
 
 @end
