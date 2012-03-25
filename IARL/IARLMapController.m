@@ -28,9 +28,22 @@
         return nil;
 
     _dataController = dataController;
+    [_dataController addObserver:self forKeyPath:IARLDataControllerBandsFilterKey options:NSKeyValueObservingOptionNew context:NULL];
     _mapView = [[MKMapView alloc] initWithFrame:CGRectZero];
 
     return self;
+}
+
+- (void)dealloc
+{
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerBandsFilterKey];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (_dataController == object && [keyPath isEqualToString:IARLDataControllerBandsFilterKey]) {
+        [_mapView.delegate mapView:_mapView regionDidChangeAnimated:NO];
+    }
 }
 
 - (void)loadView
@@ -100,6 +113,23 @@
     if (popoverController == _filtersPopoverController) {
         _filtersPopoverController = nil;
     }
+}
+
+#pragma mark - UISplitViewControllerDelegate
+
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+{
+    [barButtonItem setTitle:@"Radios in Map"];
+    NSMutableArray *leftBarButtonItems = [self.navigationItem.leftBarButtonItems mutableCopy];
+    [leftBarButtonItems insertObject:barButtonItem atIndex:0];
+    self.navigationItem.leftBarButtonItems = leftBarButtonItems;
+}
+
+- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    NSMutableArray *leftBarButtonItems = [self.navigationItem.leftBarButtonItems mutableCopy];
+    [leftBarButtonItems removeObject:barButtonItem];
+    self.navigationItem.leftBarButtonItems = leftBarButtonItems;
 }
 
 #pragma mark - API

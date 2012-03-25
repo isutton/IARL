@@ -11,7 +11,7 @@
 
 @class IARLDataController;
 
-@interface IARLMapController : UIViewController <UIPopoverControllerDelegate,UISearchBarDelegate>
+@interface IARLMapController : UIViewController <UIPopoverControllerDelegate,UISearchBarDelegate,UISplitViewControllerDelegate>
 {
     __strong UIPopoverController *_filtersPopoverController;
 }

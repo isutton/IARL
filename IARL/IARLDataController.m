@@ -35,6 +35,7 @@ static NSString *IARLUHFAnnotationImageName = @"tower_orange.png";
 static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 
 NSString * const IARLDataControllerRadiosKey = @"radios";
+NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 {
@@ -167,23 +168,6 @@ NSString * const IARLDataControllerRadiosKey = @"radios";
 
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
 {
-}
-
-#pragma mark - UISplitViewControllerDelegate
-
-- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
-{
-    [barButtonItem setTitle:@"Radios in Map"];
-    NSMutableArray *leftBarButtonItems = [aViewController.navigationItem.leftBarButtonItems mutableCopy];
-    [leftBarButtonItems insertObject:barButtonItem atIndex:0];
-    aViewController.navigationItem.leftBarButtonItems = leftBarButtonItems;
-}
-
-- (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    NSMutableArray *leftBarButtonItems = [aViewController.navigationItem.leftBarButtonItems mutableCopy];
-    [leftBarButtonItems removeObject:barButtonItem];
-    aViewController.navigationItem.leftBarButtonItems = leftBarButtonItems;
 }
 
 #pragma mark - API

@@ -27,6 +27,7 @@
     
     _dataController = dataController;
     [_dataController addObserver:self forKeyPath:IARLDataControllerRadiosKey options:NSKeyValueObservingOptionNew context:NULL];
+    [_dataController addObserver:self forKeyPath:IARLDataControllerBandsFilterKey options:NSKeyValueObservingOptionNew context:NULL];
     
     return self;
 }
@@ -34,6 +35,9 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if (object == _dataController && [keyPath isEqualToString:IARLDataControllerRadiosKey]) {
+        [self.tableView reloadData];
+    }
+    else if (object == _dataController && [keyPath isEqualToString:IARLDataControllerBandsFilterKey]) {
         [self.tableView reloadData];
     }
 }
@@ -58,6 +62,7 @@
 - (void)dealloc
 {
     [_dataController removeObserver:self forKeyPath:IARLDataControllerRadiosKey];
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerBandsFilterKey];
 }
 
 @end

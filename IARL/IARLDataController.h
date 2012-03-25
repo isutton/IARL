@@ -24,3 +24,4 @@
 @end
 
 extern NSString * const IARLDataControllerRadiosKey;
+extern NSString * const IARLDataControllerBandsFilterKey;

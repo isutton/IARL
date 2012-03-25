@@ -50,7 +50,7 @@ NSString * const IARLFontName = @"HelveticaNeue-CondensedBold";
     UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapController];
     
     UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
-    splitViewController.delegate = self.dataController;
+    splitViewController.delegate = mapController;
     splitViewController.viewControllers = [NSArray arrayWithObjects:
                                            radioNavigationController, 
                                            mapNavigationController, 
