@@ -22,13 +22,22 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize bandFilter = _bandFilter;
 
+static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
 
 - (id)init
 {
     if (!(self = [super init]))
         return nil;
     
-    _bandFilter = [NSSet setWithObjects:@"HF", @"VHF", @"UHF", nil];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+    NSArray *bandFilterArray = [userDefaults objectForKey:IARLBandFilterKey];
+
+    if (bandFilterArray == nil)
+        _bandFilter = [NSSet setWithObjects:@"HF", @"VHF", @"UHF", nil];
+    else 
+        _bandFilter = [NSSet setWithArray:bandFilterArray];
     
     return self;
 }
@@ -56,7 +65,9 @@
 - (void)setBandFilter:(NSSet *)bandFilter
 {
     _bandFilter = [bandFilter copy];
-    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[_bandFilter allObjects] forKey:IARLBandFilterKey];
+    [userDefaults synchronize];
     [self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
 }
 
