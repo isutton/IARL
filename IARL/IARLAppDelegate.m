@@ -19,6 +19,8 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
+static NSString *IARLFontName = @"HelveticaNeue-CondensedBold";
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -27,17 +29,17 @@
     [[UIToolbar appearance] setTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTintColor:[UIColor blackColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                          [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:24.0], UITextAttributeFont,
+                                                          [UIFont fontWithName:IARLFontName size:24.0], UITextAttributeFont,
                                                           nil]];
     [[UINavigationBar appearance] setTitleVerticalPositionAdjustment:-2.0 forBarMetrics:UIBarMetricsDefault];
     
-    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14.0], UITextAttributeFont, nil]
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:IARLFontName size:14.0], UITextAttributeFont, nil]
                                                 forState:UIControlStateNormal];
     
-    [[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14.0], UITextAttributeFont, nil] 
+    [[UISegmentedControl appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:IARLFontName size:14.0], UITextAttributeFont, nil] 
                                                    forState:UIControlStateNormal];
     
-    [[UITextField appearance] setFont:[UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0]];
+    [[UITextField appearance] setFont:[UIFont fontWithName:IARLFontName size:18.0]];
     
     self.dataController = [[IARLDataController alloc] init];
     self.dataController.managedObjectContext = self.managedObjectContext;
