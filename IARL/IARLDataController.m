@@ -15,8 +15,6 @@
 
 @implementation IARLDataController
 
-@synthesize mapController = _mapController;
-@synthesize radioTableController = _radioTableController;
 @synthesize radios = _radios;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize bandFilter = _bandFilter;
@@ -36,10 +34,14 @@ static NSString *IARLUHFAnnotationImageName = @"tower_orange.png";
 
 static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 
-- (id)init
+NSString * const IARLDataControllerRadiosKey = @"radios";
+
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 {
-    if (!(self = [super init]))
+    if (!(self = [self init]))
         return nil;
+    
+    _managedObjectContext = managedObjectContext;
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
@@ -90,8 +92,8 @@ static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
-    [self.mapController selectAnnotation:radio animated:YES];
+    // IARLRadio *radio = [self.radios objectAtIndex:indexPath.row];
+    // [self.mapController selectAnnotation:radio animated:YES];
 }
 
 #pragma mark - MKMapViewDelegate
@@ -111,7 +113,6 @@ static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
     NSMutableSet *radiosToRemoveInRegion = [NSMutableSet setWithArray:mapView.annotations];
     [radiosToRemoveInRegion minusSet:radiosInRegion];
     self.radios = [radiosInRegion allObjects];
-    [self.radioTableController reloadData];
     [mapView removeAnnotations:[radiosToRemoveInRegion allObjects]];
     [mapView addAnnotations:[radiosInRegion allObjects]];    
 }
@@ -142,7 +143,7 @@ static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [callOutButton addTarget:self action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
+        [callOutButton addTarget:nil action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
         annotationView.rightCalloutAccessoryView = callOutButton;
     }
     
@@ -173,33 +174,19 @@ static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
 {
     [barButtonItem setTitle:@"Radios in Map"];
-    NSMutableArray *leftBarButtonItems = [_mapController.navigationItem.leftBarButtonItems mutableCopy];
+    NSMutableArray *leftBarButtonItems = [aViewController.navigationItem.leftBarButtonItems mutableCopy];
     [leftBarButtonItems insertObject:barButtonItem atIndex:0];
-    _mapController.navigationItem.leftBarButtonItems = leftBarButtonItems;
+    aViewController.navigationItem.leftBarButtonItems = leftBarButtonItems;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    NSMutableArray *leftBarButtonItems = [_mapController.navigationItem.leftBarButtonItems mutableCopy];
+    NSMutableArray *leftBarButtonItems = [aViewController.navigationItem.leftBarButtonItems mutableCopy];
     [leftBarButtonItems removeObject:barButtonItem];
-    _mapController.navigationItem.leftBarButtonItems = leftBarButtonItems;
+    aViewController.navigationItem.leftBarButtonItems = leftBarButtonItems;
 }
 
 #pragma mark - API
-
-- (void)setRadioTableController:(IARLRadioTableController *)radioTableController
-{
-    _radioTableController = radioTableController;
-    _radioTableController.delegate = self;
-    _radioTableController.dataSource = self;
-    _radioTableController.searchBarDelegate = self;    
-}
-
-- (void)setMapController:(IARLMapController *)mapController
-{
-    _mapController = mapController;
-    _mapController.delegate = self;
-}
 
 - (void)setBandFilter:(NSSet *)bandFilter
 {
@@ -207,17 +194,7 @@ static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[_bandFilter allObjects] forKey:IARLBandFilterKey];
     [userDefaults synchronize];
-    [self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
-}
-
-- (void)annotationDisclosureButtonTapped:(id)sender
-{
-    IARLRadio *radio = [self.mapController.selectedAnnotations lastObject];
-    IARLRadioDetailViewController *vc = [[IARLRadioDetailViewController alloc] initWithNibName:@"IARLRadioDetailViewController" bundle:nil];
-    vc.radio = radio;
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-    navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-    [self.mapController presentModalViewController:navigationController animated:YES];
+    //[self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
 }
 
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region

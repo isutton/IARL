@@ -10,6 +10,8 @@
 #import "IARLFiltersViewController.h"
 #import "NSString+IARL.h"
 #import "IARLDataController.h"
+#import "IARLRadio.h"
+#import "IARLRadioDetailViewController.h"
 
 @interface IARLMapController ()
 
@@ -21,14 +23,30 @@
 @synthesize mapView = _mapView;
 @synthesize dataController = _dataController;
 
-- (id)init
+- (id)initWithDataController:(IARLDataController *)dataController
 {
-    if (!(self = [super init]))
+    if (!(self = [self init]))
         return nil;
 
+    _dataController = dataController;
+    [_dataController addObserver:self forKeyPath:IARLDataControllerRadiosKey options:NSKeyValueObservingOptionNew context:NULL];
+    
     _mapView = [[MKMapView alloc] initWithFrame:CGRectZero];
+    _mapView.delegate = _dataController;
 
     return self;
+}
+
+- (void)dealloc
+{
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerRadiosKey];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (object == _dataController && [keyPath isEqualToString:IARLDataControllerRadiosKey]) {
+        
+    }
 }
 
 - (void)viewDidLoad
@@ -144,6 +162,16 @@
 - (IBAction)locationButtonTapped:(id)sender
 {
     [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
+}
+
+- (void)annotationDisclosureButtonTapped:(id)sender
+{
+     IARLRadio *radio = [_mapView.selectedAnnotations lastObject];
+     IARLRadioDetailViewController *vc = [[IARLRadioDetailViewController alloc] initWithNibName:@"IARLRadioDetailViewController" bundle:nil];
+     vc.radio = radio;
+     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
+     [self presentModalViewController:navigationController animated:YES];
 }
 
 @end

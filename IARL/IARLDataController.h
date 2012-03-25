@@ -14,13 +14,13 @@
 
 @interface IARLDataController : NSObject <UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,UISplitViewControllerDelegate,MKMapViewDelegate>
 
-@property (nonatomic, strong) IARLMapController *mapController;
-@property (nonatomic, strong) IARLRadioTableController *radioTableController;
 @property (nonatomic, strong) NSArray *radios;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, copy) NSSet *bandFilter;
 
-- (void)annotationDisclosureButtonTapped:(id)sender;
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region;
 
 @end
+
+extern NSString * const IARLDataControllerRadiosKey;

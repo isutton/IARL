@@ -10,6 +10,7 @@
 #import "IARLRadio.h"
 #import "IARLRadioDetailViewController.h"
 #import "IARLFiltersViewController.h"
+#import "IARLDataController.h"
 
 @interface IARLRadioTableController ()
 
@@ -17,36 +18,24 @@
 
 @implementation IARLRadioTableController
 
-@synthesize searchBar = _searchBar;
+@synthesize dataController = _dataController;
 
-- (void)setDelegate:(id<UITableViewDelegate>)delegate
+- (id)initWithDataController:(IARLDataController *)dataController
 {
-    self.tableView.delegate = delegate;
+    if (!(self = [self initWithStyle:UITableViewStylePlain]))
+        return nil;
+    
+    _dataController = dataController;
+    [_dataController addObserver:self forKeyPath:IARLDataControllerRadiosKey options:NSKeyValueObservingOptionNew context:NULL];
+    
+    return self;
 }
 
-- (id<UITableViewDelegate>)delegate
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    return self.tableView.delegate;
-}
-
-- (void)setDataSource:(id<UITableViewDataSource>)dataSource
-{
-    self.tableView.dataSource = dataSource;
-}
-
-- (id<UITableViewDataSource>)dataSource
-{
-    return self.tableView.dataSource;
-}
-
-- (void)setSearchBarDelegate:(id<UISearchBarDelegate>)searchBarDelegate
-{
-    _searchBar.delegate = searchBarDelegate;
-}
-
-- (id<UISearchBarDelegate>)searchBarDelegate
-{
-    return _searchBar.delegate;
+    if (object == _dataController && [keyPath isEqualToString:IARLDataControllerRadiosKey]) {
+        [self.tableView reloadData];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -56,20 +45,19 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 - (void)viewDidLoad
 {
     self.navigationItem.title = @"Radios in Map";
-//    _searchBar = [[UISearchBar alloc] init];
-//    self.tableView.tableHeaderView = _searchBar;
-//    [_searchBar sizeToFit];
+    self.tableView.delegate = (id<UITableViewDelegate>)_dataController;
+    self.tableView.dataSource = (id<UITableViewDataSource>)_dataController;
 }
 
-- (void)reloadData
+- (void)dealloc
 {
-    [self.tableView reloadData];
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerRadiosKey];
 }
 
 @end

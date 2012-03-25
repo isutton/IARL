@@ -19,7 +19,7 @@
 @synthesize managedObjectModel=__managedObjectModel;
 @synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
 
-static NSString *IARLFontName = @"HelveticaNeue-CondensedBold";
+NSString * const IARLFontName = @"HelveticaNeue-CondensedBold";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,17 +41,13 @@ static NSString *IARLFontName = @"HelveticaNeue-CondensedBold";
     
     [[UITextField appearance] setFont:[UIFont fontWithName:IARLFontName size:18.0]];
     
-    self.dataController = [[IARLDataController alloc] init];
-    self.dataController.managedObjectContext = self.managedObjectContext;
+    self.dataController = [[IARLDataController alloc] initWithManagedObjectContext:self.managedObjectContext];
     
-    IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] init];
+    IARLRadioTableController *radioTableController = [[IARLRadioTableController alloc] initWithDataController:self.dataController];
     UINavigationController *radioNavigationController = [[UINavigationController alloc] initWithRootViewController:radioTableController];
-    self.dataController.radioTableController = radioTableController;
     
-    IARLMapController *mapController = [[IARLMapController alloc] init];
+    IARLMapController *mapController = [[IARLMapController alloc] initWithDataController:self.dataController];
     UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapController];
-    self.dataController.mapController = mapController;
-    mapController.dataController = self.dataController;
     
     UISplitViewController *splitViewController = [[UISplitViewController alloc] init];
     splitViewController.delegate = self.dataController;

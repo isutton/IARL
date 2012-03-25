@@ -22,10 +22,12 @@
 @property (nonatomic, readonly) NSArray *selectedAnnotations;
 @property (nonatomic, weak) IARLDataController *dataController;
 
+- (id)initWithDataController:(IARLDataController *)dataController;
 - (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated;
 - (void)addAnnotations:(NSArray *)annotations;
 - (void)moveToLocator:(NSString *)locator;
 - (IBAction)filtersButtonTapped:(id)sender;
 - (IBAction)locationButtonTapped:(id)sender;
+- (void)annotationDisclosureButtonTapped:(id)sender;
 
 @end

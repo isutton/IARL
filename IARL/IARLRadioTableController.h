@@ -8,13 +8,12 @@
 
 #import <MapKit/MapKit.h>
 
+@class IARLDataController;
+
 @interface IARLRadioTableController : UITableViewController
 
-@property (nonatomic, weak) id<UITableViewDelegate> delegate;
-@property (nonatomic, weak) id<UITableViewDataSource> dataSource;
-@property (nonatomic, weak) id<UISearchBarDelegate> searchBarDelegate;
-@property (nonatomic, strong) UISearchBar *searchBar;
+@property (strong, nonatomic) IARLDataController *dataController;
 
-- (void)reloadData;
+- (id)initWithDataController:(IARLDataController *)dataController;
 
 @end
