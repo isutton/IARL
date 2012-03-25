@@ -8,6 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "IARLRadio.h"
+#import "NSNumber+IARL.h"
 
 static NSManagedObjectModel *managedObjectModel()
 {
@@ -44,6 +45,15 @@ static NSManagedObjectContext *managedObjectContext()
         path = [path stringByDeletingLastPathComponent];
         path = [path stringByAppendingPathComponent:@"IARL"];
         NSURL *url = [NSURL fileURLWithPath:[path stringByAppendingPathExtension:@"sqlite"]];
+        
+        NSFileManager *fm = [NSFileManager defaultManager];
+        
+        if ([fm fileExistsAtPath:path]) {
+            NSError *error;
+            if (![fm removeItemAtPath:path error:&error]) {
+                NSLog(@"Could not remove item '%@': %@", path, [error localizedDescription]);
+            }
+        }
         
         NSError *error;
         NSPersistentStore *newStore = [coordinator addPersistentStoreWithType:STORE_TYPE configuration:nil URL:url options:nil error:&error];
@@ -85,6 +95,7 @@ int main(int argc, const char * argv[])
             radio.latitude = location.latitude;
             radio.shift = [NSNumber numberWithInt:[[radioDict valueForKeyPath:@"fields.shift"] intValue]];
             radio.tx = [NSNumber numberWithUnsignedInt:[[radioDict valueForKeyPath:@"fields.tx"] unsignedIntValue]];
+            radio.bandFrequency = [radio.tx bandFromFrequency];
         }
 
         error = nil;

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class IARLDataController;
 @class IARLFiltersViewController;
 @class IARLBandFilterViewController;
 @class IARLDeviceFilterViewController;
@@ -32,7 +33,7 @@
     
 }
 
-@property (nonatomic, weak) id<IARLFilterDelegate> delegate;
+@property (nonatomic, weak) IARLDataController *dataController;
 
 - (IBAction)filterTypeChanged:(id)sender;
 - (void)displayViewControllerAtIndex:(NSInteger)idx;

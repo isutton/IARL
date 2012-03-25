@@ -11,6 +11,7 @@
 @implementation IARLRadio
 
 @dynamic band;
+@dynamic bandFrequency;
 @dynamic callName;
 @dynamic latitude;
 @dynamic longitude;

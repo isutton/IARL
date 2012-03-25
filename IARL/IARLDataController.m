@@ -22,6 +22,17 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize bandFilter = _bandFilter;
 
+
+- (id)init
+{
+    if (!(self = [super init]))
+        return nil;
+    
+    _bandFilter = [NSSet setWithObjects:@"HF", @"VHF", @"UHF", nil];
+    
+    return self;
+}
+
 - (void)setRadioTableController:(IARLRadioTableController *)radioTableController
 {
     _radioTableController = radioTableController;
@@ -40,6 +51,13 @@
 {
     _dataStore = dataStore;
     _dataStore.delegate = self;
+}
+
+- (void)setBandFilter:(NSSet *)bandFilter
+{
+    _bandFilter = [bandFilter copy];
+    
+    [self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -92,7 +110,7 @@
 {
     MKCoordinateSpan span = mapView.region.span;
     
-    if (span.latitudeDelta < 0.5 || span.longitudeDelta < 0.5) {
+    if (span.latitudeDelta > 0.5 || span.longitudeDelta > 0.5) {
         MKCoordinateRegion region = mapView.region;
         region.span = MKCoordinateSpanMake(0.5, 0.5);
         region.center = mapView.centerCoordinate;
@@ -100,13 +118,12 @@
     }
     
     NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[self radiosInRegion:mapView.region]];
+    NSMutableSet *radiosToRemoveInRegion = [NSMutableSet setWithArray:mapView.annotations];
+    [radiosToRemoveInRegion minusSet:radiosInRegion];
     self.radios = [radiosInRegion allObjects];
     [self.radioTableController reloadData];
-    
-    NSMutableSet *annotationsInMap = [NSMutableSet setWithArray:mapView.annotations];
-    [radiosInRegion minusSet:annotationsInMap];
-    [mapView addAnnotations:[radiosInRegion allObjects]];
-    
+    [mapView removeAnnotations:[radiosToRemoveInRegion allObjects]];
+    [mapView addAnnotations:[radiosInRegion allObjects]];    
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -193,13 +210,6 @@
     [self.radioTableController reloadData];
 }
 
-#pragma mark - IARLBandFilterDelegate
-
-- (void)bandFilterControllerDidChangeFilter:(IARLBandFilterViewController *)bandFilterController
-{
-    NSLog(@"Foo");
-}
-
 #pragma mark - API
 
 - (void)annotationDisclosureButtonTapped:(id)sender
@@ -223,10 +233,13 @@
     double minLongitude = region.center.longitude - longitudeDelta;
     double maxLongitude = region.center.longitude + longitudeDelta;
     
+    [_bandFilter count];
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"latitude BETWEEN {%@, %@} and longitude BETWEEN {%@, %@}",
+                              @"latitude BETWEEN {%@, %@} AND longitude BETWEEN {%@, %@} AND bandFrequency IN %@",
                               [NSNumber numberWithDouble:minLatitude], [NSNumber numberWithDouble:maxLatitude],
                               [NSNumber numberWithDouble:minLongitude], [NSNumber numberWithDouble:maxLongitude],
+                              _bandFilter,
                               nil];
     
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"IARLRadio" inManagedObjectContext:self.managedObjectContext];

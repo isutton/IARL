@@ -123,7 +123,7 @@
         return;
     
     IARLFiltersViewController *vc = [[IARLFiltersViewController alloc] init];
-    vc.delegate = self.dataController;
+    vc.dataController = self.dataController;
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
     _filtersPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
     _filtersPopoverController.delegate = self;

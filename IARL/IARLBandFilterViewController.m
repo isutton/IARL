@@ -7,6 +7,7 @@
 //
 
 #import "IARLBandFilterViewController.h"
+#import "IARLDataController.h"
 
 @interface IARLBandFilterViewController ()
 
@@ -14,7 +15,7 @@
 
 @implementation IARLBandFilterViewController
 
-@synthesize delegate = _delegate;
+@synthesize dataController = _dataController;
 
 - (NSString *)name
 {
@@ -75,16 +76,19 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"HF";
+            cell.accessoryType = [self.dataController.bandFilter containsObject:@"HF"] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             cell.imageView.image = [UIImage imageNamed:@"tower_blue.png"];
             break;
             
         case 1:
             cell.textLabel.text = @"VHF";
+            cell.accessoryType = [self.dataController.bandFilter containsObject:@"VHF"] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             cell.imageView.image = [UIImage imageNamed:@"tower_red.png"];
             break;
             
         case 2:
             cell.textLabel.text = @"UHF";
+            cell.accessoryType = [self.dataController.bandFilter containsObject:@"UHF"] ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
             cell.imageView.image = [UIImage imageNamed:@"tower_orange.png"];
             break;
             
@@ -98,14 +102,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (indexPath.section == 0) {
+    NSString *band = cell.textLabel.text;
+    NSMutableSet *bandFilter = [self.dataController.bandFilter mutableCopy];
+    if ([bandFilter containsObject:band]) {
+        [bandFilter removeObject:band];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+        [bandFilter addObject:band];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    
+    self.dataController.bandFilter = bandFilter;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    [self.delegate bandFilterControllerDidChangeFilter:self];
 }
 
 @end

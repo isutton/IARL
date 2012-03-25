@@ -11,6 +11,7 @@
 		820A026C1518D74D00FF0220 /* NSNumber+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 820A026B1518D74D00FF0220 /* NSNumber+IARL.m */; };
 		820A026F1518DA6500FF0220 /* tower_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 820A026E1518DA6500FF0220 /* tower_blue.png */; };
 		82323FEA15109F410049A90C /* IARLDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE915109F410049A90C /* IARLDataStore.m */; };
+		827F07D9151F95C000D006E9 /* NSNumber+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 820A026B1518D74D00FF0220 /* NSNumber+IARL.m */; };
 		82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */; };
 		82A01A6C1510DA6100637827 /* IARLRadioDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */; };
 		82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */; };
@@ -435,6 +436,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				827F07D9151F95C000D006E9 /* NSNumber+IARL.m in Sources */,
 				82A5C2D315157E3F00FE1AE1 /* IARL.xcdatamodeld in Sources */,
 				82E0E40815188B3B0095425C /* IARLRadio.m in Sources */,
 				82A5C2C815157DEB00FE1AE1 /* main.m in Sources */,

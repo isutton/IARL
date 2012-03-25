@@ -19,7 +19,8 @@
 
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
-@property (nonatomic, copy) NSString *band;
+@property (nonatomic, strong) NSString *band;
+@property (nonatomic, strong) NSString *bandFrequency;
 @property (nonatomic, strong) NSNumber *radioID;
 @property (nonatomic, strong) NSNumber *shift;
 @property (nonatomic, strong) NSNumber *tx;

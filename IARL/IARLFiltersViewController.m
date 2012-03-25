@@ -16,7 +16,7 @@
 
 @implementation IARLFiltersViewController
 
-@synthesize delegate = _delegate;
+@synthesize dataController = _dataController;
 
 - (id)init
 {
@@ -31,10 +31,10 @@
     return self;
 }
 
-- (void)setDelegate:(id<IARLFilterDelegate>)delegate
+- (void)setDataController:(IARLDataController *)dataController
 {
-    _delegate = delegate;
-    [_filters makeObjectsPerformSelector:@selector(setDelegate:) withObject:_delegate];
+    _dataController = dataController;
+    [_filters makeObjectsPerformSelector:@selector(setDataController:) withObject:_dataController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
