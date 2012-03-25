@@ -78,8 +78,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    CLLocationCoordinate2D coordinate = [searchBar.text coordinateFromGridSquareLocator];
-    [_mapView setCenterCoordinate:coordinate animated:YES];
+    [self moveToLocator:searchBar.text];
     [searchBar resignFirstResponder];
 }
 
@@ -93,6 +92,11 @@
 }
 
 #pragma mark - API
+
+- (void)moveToLocator:(NSString *)locator
+{
+    [_mapView setCenterCoordinate:[locator coordinateFromGridSquareLocator] animated:YES];
+}
 
 - (void)setDelegate:(id<MKMapViewDelegate>)delegate
 {
