@@ -17,14 +17,9 @@
 }
 
 @property (nonatomic, strong) MKMapView *mapView;
-@property (nonatomic, weak) id<MKMapViewDelegate>delegate;
-@property (nonatomic, readonly) MKCoordinateRegion region;
-@property (nonatomic, readonly) NSArray *selectedAnnotations;
 @property (nonatomic, weak) IARLDataController *dataController;
 
 - (id)initWithDataController:(IARLDataController *)dataController;
-- (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated;
-- (void)addAnnotations:(NSArray *)annotations;
 - (void)moveToLocator:(NSString *)locator;
 - (IBAction)filtersButtonTapped:(id)sender;
 - (IBAction)locationButtonTapped:(id)sender;

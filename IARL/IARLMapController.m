@@ -19,7 +19,6 @@
 
 @implementation IARLMapController
 
-@dynamic delegate;
 @synthesize mapView = _mapView;
 @synthesize dataController = _dataController;
 
@@ -29,33 +28,21 @@
         return nil;
 
     _dataController = dataController;
-    [_dataController addObserver:self forKeyPath:IARLDataControllerRadiosKey options:NSKeyValueObservingOptionNew context:NULL];
-    
     _mapView = [[MKMapView alloc] initWithFrame:CGRectZero];
-    _mapView.delegate = _dataController;
 
     return self;
 }
 
-- (void)dealloc
+- (void)loadView
 {
-    [_dataController removeObserver:self forKeyPath:IARLDataControllerRadiosKey];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if (object == _dataController && [keyPath isEqualToString:IARLDataControllerRadiosKey]) {
-        
-    }
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    _mapView.frame = self.view.bounds;
+    UIView *view = [[UIView alloc] init];
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    view.autoresizesSubviews = YES;
+    
+    _mapView = [[MKMapView alloc] init];
     _mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _mapView.showsUserLocation = YES;
+    
+    [view addSubview:_mapView];
 
     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 22.0)];
     searchBar.delegate = self;
@@ -67,7 +54,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchBar];
     self.navigationItem.leftBarButtonItems = [NSArray arrayWithObject:[[UIBarButtonItem alloc] initWithTitle:@"Filters" style:UIBarButtonItemStyleBordered target:self action:@selector(filtersButtonTapped:)]];
-
+    
     self.navigationController.toolbarHidden = NO;
     
     self.toolbarItems = [NSArray arrayWithObjects:
@@ -75,8 +62,14 @@
                          [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"22-location-arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(locationButtonTapped:)], 
                          nil];
     
-    self.view.autoresizesSubviews = YES;
-    [self.view addSubview:_mapView];
+    self.view = view;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    _mapView.delegate = _dataController;
+    _mapView.showsUserLocation = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -114,36 +107,6 @@
 - (void)moveToLocator:(NSString *)locator
 {
     [_mapView setCenterCoordinate:[locator coordinateFromGridSquareLocator] animated:YES];
-}
-
-- (void)setDelegate:(id<MKMapViewDelegate>)delegate
-{
-    self.mapView.delegate = delegate;
-}
-
-- (id<MKMapViewDelegate>)delegate
-{
-    return self.mapView.delegate;
-}
-
-- (void)selectAnnotation:(id<MKAnnotation>)annotation animated:(BOOL)animated
-{
-    [self.mapView selectAnnotation:annotation animated:animated];
-}
-
-- (MKCoordinateRegion)region
-{
-    return [self.mapView region];
-}
-
-- (NSArray *)selectedAnnotations
-{
-    return self.mapView.selectedAnnotations;
-}
-
-- (void)addAnnotations:(NSArray *)annotations
-{
-    [self.mapView addAnnotations:annotations];
 }
 
 - (IBAction)filtersButtonTapped:(id)sender
