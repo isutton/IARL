@@ -8,7 +8,6 @@
 
 #import "IARLFiltersViewController.h"
 #import "IARLBandFilterViewController.h"
-#import "IARLDeviceFilterViewController.h"
 
 @interface IARLFiltersViewController ()
 

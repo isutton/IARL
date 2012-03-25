@@ -15,7 +15,6 @@
 
 @implementation IARLDataController
 
-@synthesize dataStore = _dataStore;
 @synthesize mapController = _mapController;
 @synthesize radioTableController = _radioTableController;
 @synthesize radios = _radios;
@@ -23,52 +22,32 @@
 @synthesize bandFilter = _bandFilter;
 
 static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
+static NSString *IARLHFBandKey = @"HF";
+static NSString *IARLVHFBandKey = @"VHF";
+static NSString *IARLUHFBandKey = @"UHF";
+
+static NSString *IARLHFCellImageName = @"tower_blue.png";
+static NSString *IARLVHFCellImageName = @"tower_red.png";
+static NSString *IARLUHFCellImageName = @"tower_orange.png";
+
+static NSString *IARLHFAnnotationImageName = @"tower_blue.png";
+static NSString *IARLVHFAnnotationImageName = @"tower_red.png";
+static NSString *IARLUHFAnnotationImageName = @"tower_orange.png";
+
+static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
 
 - (id)init
 {
     if (!(self = [super init]))
         return nil;
     
-    
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-    NSArray *bandFilterArray = [userDefaults objectForKey:IARLBandFilterKey];
-
-    if (bandFilterArray == nil)
-        _bandFilter = [NSSet setWithObjects:@"HF", @"VHF", @"UHF", nil];
-    else 
-        _bandFilter = [NSSet setWithArray:bandFilterArray];
+    _bandFilter = ([userDefaults objectForKey:IARLBandFilterKey] == nil)
+        ? [NSSet setWithObjects:IARLHFBandKey, IARLVHFBandKey, IARLUHFBandKey, nil] 
+        : [NSSet setWithArray:[userDefaults objectForKey:IARLBandFilterKey]];
     
     return self;
-}
-
-- (void)setRadioTableController:(IARLRadioTableController *)radioTableController
-{
-    _radioTableController = radioTableController;
-    _radioTableController.delegate = self;
-    _radioTableController.dataSource = self;
-    _radioTableController.searchBarDelegate = self;    
-}
-
-- (void)setMapController:(IARLMapController *)mapController
-{
-    _mapController = mapController;
-    _mapController.delegate = self;
-}
-
-- (void)setDataStore:(IARLDataStore *)dataStore
-{
-    _dataStore = dataStore;
-    _dataStore.delegate = self;
-}
-
-- (void)setBandFilter:(NSSet *)bandFilter
-{
-    _bandFilter = [bandFilter copy];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[_bandFilter allObjects] forKey:IARLBandFilterKey];
-    [userDefaults synchronize];
-    [self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
 }
 
 #pragma mark - Table view data source
@@ -86,9 +65,9 @@ static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.backgroundView.backgroundColor = [UIColor blackColor];
-        cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:18.0];
+        cell.textLabel.font = [UIFont fontWithName:IARLCellFont size:18.0];
         cell.textLabel.textColor = [UIColor colorWithRed:0.435 green:0.612 blue:0.518 alpha:1];
-        cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBold" size:14.0];
+        cell.detailTextLabel.font = [UIFont fontWithName:IARLCellFont size:14.0];
         cell.detailTextLabel.textColor = [UIColor colorWithRed:0.682 green:0.761 blue:0.722 alpha:1];
     }
     
@@ -99,12 +78,12 @@ static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
 
     NSString *band = [radio.tx bandFromFrequency];
     
-    if ([band isEqualToString:@"HF"])
-        cell.imageView.image = [UIImage imageNamed:@"tower_blue.png"];
-    else if ([band isEqualToString:@"VHF"])
-        cell.imageView.image = [UIImage imageNamed:@"tower_red.png"];
-    else if ([band isEqualToString:@"UHF"])
-        cell.imageView.image = [UIImage imageNamed:@"tower_orange.png"];
+    if ([band isEqualToString:IARLHFBandKey])
+        cell.imageView.image = [UIImage imageNamed:IARLHFCellImageName];
+    else if ([band isEqualToString:IARLVHFBandKey])
+        cell.imageView.image = [UIImage imageNamed:IARLVHFCellImageName];
+    else if ([band isEqualToString:IARLUHFBandKey])
+        cell.imageView.image = [UIImage imageNamed:IARLUHFCellImageName];
     
     return cell;
 }
@@ -154,12 +133,12 @@ static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
     else {
         NSString *band = [((IARLRadio *)annotation).tx bandFromFrequency];
         
-        if ([band isEqualToString:@"HF"])
-            annotationView.image = [UIImage imageNamed:@"tower_blue.png"];
-        else if ([band isEqualToString:@"VHF"])
-            annotationView.image = [UIImage imageNamed:@"tower_red.png"];
-        else if ([band isEqualToString:@"UHF"])
-            annotationView.image = [UIImage imageNamed:@"tower_orange.png"];
+        if ([band isEqualToString:IARLHFBandKey])
+            annotationView.image = [UIImage imageNamed:IARLHFAnnotationImageName];
+        else if ([band isEqualToString:IARLVHFBandKey])
+            annotationView.image = [UIImage imageNamed:IARLVHFAnnotationImageName];
+        else if ([band isEqualToString:IARLUHFBandKey])
+            annotationView.image = [UIImage imageNamed:IARLUHFAnnotationImageName];
 
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -206,22 +185,30 @@ static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
     _mapController.navigationItem.leftBarButtonItems = leftBarButtonItems;
 }
 
-#pragma mark - IARLDataStoreDelegate
+#pragma mark - API
 
-- (void)dataStoreDidFinishLoading:(IARLDataStore *)dataStore
+- (void)setRadioTableController:(IARLRadioTableController *)radioTableController
 {
-    NSArray *radiosInRegion = [dataStore radiosInRegion:self.mapController.region];
-    
-    // Bail out if there's too many radios in region.
-    if ([radiosInRegion count] > 50)
-        return;
-    
-    [self.mapController performSelectorOnMainThread:@selector(addAnnotations:) withObject:radiosInRegion waitUntilDone:NO];
-    self.radios = radiosInRegion;
-    [self.radioTableController reloadData];
+    _radioTableController = radioTableController;
+    _radioTableController.delegate = self;
+    _radioTableController.dataSource = self;
+    _radioTableController.searchBarDelegate = self;    
 }
 
-#pragma mark - API
+- (void)setMapController:(IARLMapController *)mapController
+{
+    _mapController = mapController;
+    _mapController.delegate = self;
+}
+
+- (void)setBandFilter:(NSSet *)bandFilter
+{
+    _bandFilter = [bandFilter copy];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[_bandFilter allObjects] forKey:IARLBandFilterKey];
+    [userDefaults synchronize];
+    [self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
+}
 
 - (void)annotationDisclosureButtonTapped:(id)sender
 {

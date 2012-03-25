@@ -10,7 +10,6 @@
 		82072787150F802F0001388B /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
 		820A026C1518D74D00FF0220 /* NSNumber+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 820A026B1518D74D00FF0220 /* NSNumber+IARL.m */; };
 		820A026F1518DA6500FF0220 /* tower_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 820A026E1518DA6500FF0220 /* tower_blue.png */; };
-		82323FEA15109F410049A90C /* IARLDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 82323FE915109F410049A90C /* IARLDataStore.m */; };
 		827F07D9151F95C000D006E9 /* NSNumber+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 820A026B1518D74D00FF0220 /* NSNumber+IARL.m */; };
 		827F07DD151F9D1100D006E9 /* 22-location-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F07DB151F9D1100D006E9 /* 22-location-arrow.png */; };
 		827F07DE151F9D1100D006E9 /* 22-location-arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 827F07DC151F9D1100D006E9 /* 22-location-arrow@2x.png */; };
@@ -42,7 +41,6 @@
 		82CD3550150F680C00BFE036 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD354F150F680C00BFE036 /* CoreLocation.framework */; };
 		82E0E3F11511D8FB0095425C /* NSString+IARL.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F01511D8FB0095425C /* NSString+IARL.m */; };
 		82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */; };
-		82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */; };
 		82E0E3FB1512033E0095425C /* IARLDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E0E3FA1512033E0095425C /* IARLDataController.m */; };
 		82E0E40715188A170095425C /* radios.js in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82323FE415109C0B0049A90C /* radios.js */; };
 		82E0E40815188B3B0095425C /* IARLRadio.m in Sources */ = {isa = PBXBuildFile; fileRef = 82072786150F802F0001388B /* IARLRadio.m */; };
@@ -83,8 +81,6 @@
 		820A026B1518D74D00FF0220 /* NSNumber+IARL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+IARL.m"; sourceTree = "<group>"; };
 		820A026E1518DA6500FF0220 /* tower_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tower_blue.png; sourceTree = "<group>"; };
 		82323FE415109C0B0049A90C /* radios.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = radios.js; sourceTree = "<group>"; };
-		82323FE815109F410049A90C /* IARLDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataStore.h; sourceTree = "<group>"; };
-		82323FE915109F410049A90C /* IARLDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataStore.m; sourceTree = "<group>"; };
 		827F07DB151F9D1100D006E9 /* 22-location-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "22-location-arrow.png"; sourceTree = "<group>"; };
 		827F07DC151F9D1100D006E9 /* 22-location-arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "22-location-arrow@2x.png"; sourceTree = "<group>"; };
 		82A01A681510DA6100637827 /* IARLRadioDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLRadioDetailViewController.h; sourceTree = "<group>"; };
@@ -125,8 +121,6 @@
 		82E0E3F01511D8FB0095425C /* NSString+IARL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IARL.m"; sourceTree = "<group>"; };
 		82E0E3F31511F5440095425C /* IARLBandFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLBandFilterViewController.h; sourceTree = "<group>"; };
 		82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLBandFilterViewController.m; sourceTree = "<group>"; };
-		82E0E3F61511FE040095425C /* IARLDeviceFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDeviceFilterViewController.h; sourceTree = "<group>"; };
-		82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDeviceFilterViewController.m; sourceTree = "<group>"; };
 		82E0E3F91512033E0095425C /* IARLDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IARLDataController.h; sourceTree = "<group>"; };
 		82E0E3FA1512033E0095425C /* IARLDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IARLDataController.m; sourceTree = "<group>"; };
 		82E0E40A15188B850095425C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
@@ -241,8 +235,6 @@
 				82CD3548150F642B00BFE036 /* IARLMapController.m */,
 				82072785150F802F0001388B /* IARLRadio.h */,
 				82072786150F802F0001388B /* IARLRadio.m */,
-				82323FE815109F410049A90C /* IARLDataStore.h */,
-				82323FE915109F410049A90C /* IARLDataStore.m */,
 				82A01A681510DA6100637827 /* IARLRadioDetailViewController.h */,
 				82A01A691510DA6100637827 /* IARLRadioDetailViewController.m */,
 				82A01A6A1510DA6100637827 /* IARLRadioDetailViewController.xib */,
@@ -250,8 +242,6 @@
 				82A01A6E1510EEF200637827 /* IARLFiltersViewController.m */,
 				82E0E3F31511F5440095425C /* IARLBandFilterViewController.h */,
 				82E0E3F41511F5450095425C /* IARLBandFilterViewController.m */,
-				82E0E3F61511FE040095425C /* IARLDeviceFilterViewController.h */,
-				82E0E3F71511FE040095425C /* IARLDeviceFilterViewController.m */,
 				82E0E3F91512033E0095425C /* IARLDataController.h */,
 				82E0E3FA1512033E0095425C /* IARLDataController.m */,
 				82A5C2B91515681300FE1AE1 /* IARL.xcdatamodeld */,
@@ -460,12 +450,10 @@
 				82CD3546150F637E00BFE036 /* IARLRadioTableController.m in Sources */,
 				82CD3549150F642B00BFE036 /* IARLMapController.m in Sources */,
 				82072787150F802F0001388B /* IARLRadio.m in Sources */,
-				82323FEA15109F410049A90C /* IARLDataStore.m in Sources */,
 				82A01A6B1510DA6100637827 /* IARLRadioDetailViewController.m in Sources */,
 				82A01A6F1510EEF200637827 /* IARLFiltersViewController.m in Sources */,
 				82E0E3F11511D8FB0095425C /* NSString+IARL.m in Sources */,
 				82E0E3F51511F5450095425C /* IARLBandFilterViewController.m in Sources */,
-				82E0E3F81511FE040095425C /* IARLDeviceFilterViewController.m in Sources */,
 				82E0E3FB1512033E0095425C /* IARLDataController.m in Sources */,
 				82A5C2BB1515681300FE1AE1 /* IARL.xcdatamodeld in Sources */,
 				820A026C1518D74D00FF0220 /* NSNumber+IARL.m in Sources */,
