@@ -25,3 +25,21 @@
 
 extern NSString * const IARLDataControllerRadiosKey;
 extern NSString * const IARLDataControllerBandsFilterKey;
+
+extern NSString * const IARLBandFilterKey;
+extern NSString * const IARLHFBandKey;
+extern NSString * const IARLVHFBandKey;
+extern NSString * const IARLUHFBandKey;
+
+extern NSString * const IARLHFCellImageName;
+extern NSString * const IARLVHFCellImageName;
+extern NSString * const IARLUHFCellImageName;
+
+extern NSString * const IARLHFAnnotationImageName;
+extern NSString * const IARLVHFAnnotationImageName;
+extern NSString * const IARLUHFAnnotationImageName;
+
+extern NSString * const IARLCellFont;
+
+extern NSString * const IARLDataControllerRadiosKey;
+extern NSString * const IARLDataControllerBandsFilterKey;

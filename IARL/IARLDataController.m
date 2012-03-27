@@ -12,6 +12,7 @@
 #import "IARLRadioDetailViewController.h"
 #import "IARLRadio.h"
 #import "NSNumber+IARL.h"
+#import "IARLAnnotationView.h"
 
 @implementation IARLDataController
 
@@ -19,20 +20,20 @@
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize bandFilter = _bandFilter;
 
-static NSString *IARLBandFilterKey = @"IARLBandFilterKey";
-static NSString *IARLHFBandKey = @"HF";
-static NSString *IARLVHFBandKey = @"VHF";
-static NSString *IARLUHFBandKey = @"UHF";
+NSString * const IARLBandFilterKey = @"IARLBandFilterKey";
+NSString * const IARLHFBandKey = @"HF";
+NSString * const IARLVHFBandKey = @"VHF";
+NSString * const IARLUHFBandKey = @"UHF";
 
-static NSString *IARLHFCellImageName = @"tower_blue.png";
-static NSString *IARLVHFCellImageName = @"tower_red.png";
-static NSString *IARLUHFCellImageName = @"tower_orange.png";
+NSString * const IARLHFCellImageName = @"tower_blue.png";
+NSString * const IARLVHFCellImageName = @"tower_red.png";
+NSString * const IARLUHFCellImageName = @"tower_orange.png";
 
-static NSString *IARLHFAnnotationImageName = @"tower_blue.png";
-static NSString *IARLVHFAnnotationImageName = @"tower_red.png";
-static NSString *IARLUHFAnnotationImageName = @"tower_orange.png";
+NSString * const IARLHFAnnotationImageName = @"tower_blue.png";
+NSString * const IARLVHFAnnotationImageName = @"tower_red.png";
+NSString * const IARLUHFAnnotationImageName = @"tower_orange.png";
 
-static NSString *IARLCellFont = @"HelveticaNeue-CondensedBold";
+NSString * const IARLCellFont = @"HelveticaNeue-CondensedBold";
 
 NSString * const IARLDataControllerRadiosKey = @"radios";
 NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
@@ -121,10 +122,10 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
     static NSString *AnnotationReuseIdentifier = @"AnnotationReuseIdentifier";
-    MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationReuseIdentifier];
+    IARLAnnotationView *annotationView = (IARLAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationReuseIdentifier];
     
     if (!annotationView) {
-        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationReuseIdentifier];
+        annotationView = [[IARLAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationReuseIdentifier];
     }
     
     annotationView.annotation = annotation;
@@ -133,15 +134,6 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
         annotationView.canShowCallout = NO;
     }
     else {
-        NSString *band = [((IARLRadio *)annotation).tx bandFromFrequency];
-        
-        if ([band isEqualToString:IARLHFBandKey])
-            annotationView.image = [UIImage imageNamed:IARLHFAnnotationImageName];
-        else if ([band isEqualToString:IARLVHFBandKey])
-            annotationView.image = [UIImage imageNamed:IARLVHFAnnotationImageName];
-        else if ([band isEqualToString:IARLUHFBandKey])
-            annotationView.image = [UIImage imageNamed:IARLUHFAnnotationImageName];
-
         annotationView.canShowCallout = YES;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [callOutButton addTarget:nil action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
