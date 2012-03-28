@@ -19,6 +19,7 @@
 @synthesize radios = _radios;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize bandFilter = _bandFilter;
+@synthesize currentRegion = _currentRegion;
 
 NSString * const IARLBandFilterKey = @"IARLBandFilterKey";
 NSString * const IARLHFBandKey = @"HF";
@@ -102,21 +103,8 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    MKCoordinateSpan span = mapView.region.span;
-    
-    if (span.latitudeDelta > 0.5 || span.longitudeDelta > 0.5) {
-        MKCoordinateRegion region = mapView.region;
-        region.span = MKCoordinateSpanMake(0.5, 0.5);
-        region.center = mapView.centerCoordinate;
-        [mapView setRegion:region animated:YES];
-    }
-    
-    NSMutableSet *radiosInRegion = [NSMutableSet setWithArray:[self radiosInRegion:mapView.region]];
-    NSMutableSet *radiosToRemoveInRegion = [NSMutableSet setWithArray:mapView.annotations];
-    [radiosToRemoveInRegion minusSet:radiosInRegion];
-    self.radios = [radiosInRegion allObjects];
-    [mapView removeAnnotations:[radiosToRemoveInRegion allObjects]];
-    [mapView addAnnotations:[radiosInRegion allObjects]];    
+    self.currentRegion = mapView.region ;
+    [self updateRadiosInCurrentRegion];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -134,7 +122,7 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
         annotationView.canShowCallout = NO;
     }
     else {
-        annotationView.canShowCallout = YES;
+        annotationView.canShowCallout = NO;
         UIButton *callOutButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [callOutButton addTarget:nil action:@selector(annotationDisclosureButtonTapped:) forControlEvents:UIControlEventAllTouchEvents];
         annotationView.rightCalloutAccessoryView = callOutButton;
@@ -143,34 +131,40 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
     return annotationView;
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    static BOOL didUpdateRegion;
+    IARLAnnotationView *annotationView = (IARLAnnotationView *)view;
+    CGRect calloutRect;
+    calloutRect.size = CGSizeMake(1.0, 1.0);
+    calloutRect.origin = [mapView convertCoordinate:view.annotation.coordinate toPointToView:mapView];
 
-    if (didUpdateRegion)
-        return;
-    
-    MKCoordinateRegion region;
-    region.center = userLocation.coordinate;
-    region.span = MKCoordinateSpanMake(0.5, 0.5);
-    [mapView setRegion:region animated:YES];
-    
-    didUpdateRegion = YES;
+    IARLRadioDetailViewController *rdvc = [[IARLRadioDetailViewController alloc] init];
+    rdvc.radio = (IARLRadio *)view.annotation;
+    UIPopoverController *pc = [[UIPopoverController alloc] initWithContentViewController:rdvc];
+    annotationView.popoverController = pc;
+    pc.passthroughViews = [NSArray arrayWithObject:mapView];
+    [pc presentPopoverFromRect:calloutRect inView:mapView permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
-- (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
+    IARLAnnotationView *annotationView = (IARLAnnotationView *)view;
+    [annotationView.popoverController dismissPopoverAnimated:YES];
+    annotationView.popoverController = nil;
 }
 
 #pragma mark - API
 
 - (void)setBandFilter:(NSSet *)bandFilter
 {
+    [self willChangeValueForKey:IARLDataControllerBandsFilterKey];
     _bandFilter = [bandFilter copy];
+    [self didChangeValueForKey:IARLDataControllerBandsFilterKey];
+
+    [self updateRadiosInCurrentRegion];
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:[_bandFilter allObjects] forKey:IARLBandFilterKey];
     [userDefaults synchronize];
-    //[self mapView:self.mapController.mapView regionDidChangeAnimated:YES];
 }
 
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region
@@ -206,6 +200,16 @@ NSString * const IARLDataControllerBandsFilterKey = @"bandFilter";
     }
 
     return radiosInRegion;
+}
+
+- (void)updateRadiosInCurrentRegion
+{
+    [self updateRadiosInRegion:_currentRegion];
+}
+
+- (void)updateRadiosInRegion:(MKCoordinateRegion)region
+{
+    self.radios = [self radiosInRegion:region];
 }
 
 @end

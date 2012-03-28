@@ -13,6 +13,9 @@
 
 @implementation IARLAnnotationView
 
+@synthesize calloutView = _calloutView;
+@synthesize popoverController = _popoverController;
+
 - (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (!(self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]))

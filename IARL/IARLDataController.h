@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSArray *radios;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, copy) NSSet *bandFilter;
+@property (nonatomic) MKCoordinateRegion currentRegion;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSArray *)radiosInRegion:(MKCoordinateRegion)region;

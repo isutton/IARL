@@ -50,6 +50,11 @@
 	return YES;
 }
 
+- (CGSize)contentSizeForViewInPopover
+{
+    return CGSizeMake(245, 168.0);
+}
+
 #pragma mark - API
 
 - (void)doneBarButtonTapped:(id)sender

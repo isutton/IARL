@@ -28,21 +28,25 @@
         return nil;
 
     _dataController = dataController;
-    [_dataController addObserver:self forKeyPath:IARLDataControllerBandsFilterKey options:NSKeyValueObservingOptionNew context:NULL];
-    _mapView = [[MKMapView alloc] initWithFrame:CGRectZero];
 
     return self;
 }
 
 - (void)dealloc
 {
-    [_dataController removeObserver:self forKeyPath:IARLDataControllerBandsFilterKey];
+}
+
+- (void)updateAnnotations
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_mapView addAnnotations:_dataController.radios]; 
+    });
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (_dataController == object && [keyPath isEqualToString:IARLDataControllerBandsFilterKey]) {
-        [_mapView.delegate mapView:_mapView regionDidChangeAnimated:NO];
+    if (_dataController == object) {
+        [self updateAnnotations];
     }
 }
 
@@ -85,12 +89,22 @@
     _mapView.showsUserLocation = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [_dataController addObserver:self forKeyPath:IARLDataControllerRadiosKey options:NSKeyValueObservingOptionNew context:NULL];
+    [_dataController addObserver:self forKeyPath:IARLDataControllerBandsFilterKey options:NSKeyValueObservingOptionNew context:NULL];
+    [self updateAnnotations];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerRadiosKey];
+    [_dataController removeObserver:self forKeyPath:IARLDataControllerBandsFilterKey];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
-    MKCoordinateRegion region;
-    region.center = _mapView.userLocation.coordinate;
-    region.span = MKCoordinateSpanMake(0.5, 0.5);
-    [_mapView setRegion:region animated:YES];
+    _mapView.region = MKCoordinateRegionMake([@"JO22KI" coordinateFromGridSquareLocator], MKCoordinateSpanMake(0.5, 0.5));
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -136,7 +150,8 @@
 
 - (void)moveToLocator:(NSString *)locator
 {
-    [_mapView setCenterCoordinate:[locator coordinateFromGridSquareLocator] animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionMake([locator coordinateFromGridSquareLocator], MKCoordinateSpanMake(0.5, 0.5));
+    [_mapView setRegion:region];
 }
 
 - (IBAction)filtersButtonTapped:(id)sender
@@ -154,17 +169,8 @@
 
 - (IBAction)locationButtonTapped:(id)sender
 {
-    [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
-}
-
-- (void)annotationDisclosureButtonTapped:(id)sender
-{
-     IARLRadio *radio = [_mapView.selectedAnnotations lastObject];
-     IARLRadioDetailViewController *vc = [[IARLRadioDetailViewController alloc] initWithNibName:@"IARLRadioDetailViewController" bundle:nil];
-     vc.radio = radio;
-     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-     navigationController.modalPresentationStyle = UIModalPresentationFormSheet;
-     [self presentModalViewController:navigationController animated:YES];
+    MKCoordinateRegion region = MKCoordinateRegionMake(self.mapView.userLocation.coordinate, MKCoordinateSpanMake(0.2, 0.2));
+    [_mapView setRegion:region];
 }
 
 @end

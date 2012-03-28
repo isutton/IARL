@@ -23,6 +23,5 @@
 - (void)moveToLocator:(NSString *)locator;
 - (IBAction)filtersButtonTapped:(id)sender;
 - (IBAction)locationButtonTapped:(id)sender;
-- (void)annotationDisclosureButtonTapped:(id)sender;
 
 @end

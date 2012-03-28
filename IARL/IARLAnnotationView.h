@@ -12,4 +12,7 @@
 
 @interface IARLAnnotationView : MKAnnotationView
 
+@property (weak, nonatomic) UIView *calloutView;
+@property (strong, nonatomic) UIPopoverController *popoverController;
+
 @end
